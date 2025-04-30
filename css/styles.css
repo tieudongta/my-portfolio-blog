@@ -151,6 +151,21 @@ form button {
 form button:hover {
   background-color: #0056b3;
 }
+ul.certifications,
+ul.work-experience {
+  margin-top: 20px;
+  padding-left: 40px;
+  border-left: 3px solid #0073e6;
+}
+
+ul.certifications li,
+ul.work-experience li {
+  padding-left: 10px;
+}
+
+ul.work-experience {
+  margin-top: 30px;
+}
 footer{
 	background: #222;
 	color: #ccc;
