@@ -9,6 +9,10 @@ body{
 	color: #333;
 	line-height: 1.6;
 }
+hr{
+	margin-top: 20px;
+	height: 5px;
+}
 .container{
 	width: 90%;
 	max-width: 960px;
@@ -84,7 +88,7 @@ nav a:hover{
 	border-radius: 8px;
 	box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 	gap: 1.5rem;
-	align-items: center;
+	align-items: flex-start;
 }
 .project img{
 	width: 300px;
@@ -92,6 +96,11 @@ nav a:hover{
 	border-radius: 6px;
 	object-fit:cover;
 	flex-shrink: 0;
+	margin-top: 10px;
+}
+.project>div{
+	margin-top: -30px;
+	flex:1;
 }
 .blog-post{
 	background: white;
@@ -115,6 +124,10 @@ nav a:hover{
 	font-size: 0.9rem;
 	color: #666;
 	margin-bottom: 0.8rem;
+}
+.date{
+	font-style: italic;
+	font-size: 0.9em;
 }
 form{
 	background: #fff;
@@ -153,9 +166,8 @@ form button:hover {
 }
 ul.certifications,
 ul.work-experience {
-  margin-top: 20px;
+  margin-bottom: 20px;
   padding-left: 40px;
-  border-left: 3px solid #0073e6;
 }
 
 ul.certifications li,
@@ -165,6 +177,9 @@ ul.work-experience li {
 
 ul.work-experience {
   margin-top: 30px;
+}
+h3{
+	margin-top: 30px;
 }
 footer{
 	background: #222;
