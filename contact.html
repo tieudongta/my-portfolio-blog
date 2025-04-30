@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – Nhiem Nguyen</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Nhiem Nguyen</h1>
+      <p class="tagline">Get in Touch</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="projects.html">Projects</a>
+        <a href="blog.html">Blog</a>
+        <a href="contact.html">Contact</a>
+		<a href="about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section>
+      <h2>Contact Me</h2>
+      <p>If you'd like to connect or have any questions, feel free to reach out using the form below. I'll get back to you as soon as I can!</p>
+
+      <form action="https://formsubmit.co/nhiem.nguyentri@gmail.com" method="POST">
+        <!-- Default subject -->
+		<input type="hidden" name="_subject" value="New Portfolio Contact Request from My portfolio website">
+		<!-- Name -->
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" required />
+
+        <!-- Email -->
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" required />
+
+        <!-- Message -->
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+
+        <!-- Submit Button -->
+        <button type="submit" class="button">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>
