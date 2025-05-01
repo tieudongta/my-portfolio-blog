@@ -185,6 +185,17 @@ h3{
 .book{
 	font-style: italic;
 }
+pre {
+  background: #f4f4f4;
+  overflow-x: auto;
+  border-radius: 6px;
+  font-family: monospace;
+  white-space: pre;
+}
+
+code {
+  font-family: monospace;
+}
 footer{
 	background: #222;
 	color: #ccc;
