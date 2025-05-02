@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial To-Do List Step 7 – Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+<!-- Prism CSS (Theme) -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
+
+<!-- Prism Core JS -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+
+<!-- Optional: Add Language Support (e.g., HTML, JavaScript, Bash, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Task Manager/To-Do List Tutorial Step 7</h1>
+      <p class="tagline">This tutorial guides you from scratch to build your own To-Do List App</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>To-Do List Tutorial Step 7</h2>
+      <p class="date">Posted on May 03, 2025</p>
+	<section>
+		<h3>Tutorial Description</h3>
+		<p>Let's continue building your own <em>To-Do List App</em> from step 6.In this step, we'll implement the feature that allows you to <em>Inline Edit Tasks</em>- this will let users click and edit a task name directly in the list.</p>
+	</section>
+	<section>
+		<h3>Goals</h3>
+		<ol class="indent">
+			<li>Enable users to edit the task text inline, with changes saved automatically.</li>
+		</ol>
+	</section>
+	<section>
+		<h3>Step 7-1: Update Task Rendering in <code>renderTasks()</code></h3>
+		<p>In your <code>&lt;li&gt;</code> rendering section, update the task display to make the text editable:</p>
+<pre>
+<code>
+&lt;span contenteditable="true" 
+      onblur="editTask(${index}, this)" 
+      onkeydown="checkEnter(event)"&gt;
+  ${task.text}
+&lt;/span&gt;
+
+</code>
+</pre>
+<p>This allows:</p>
+<ul class="indent">
+	<li><code>contenteditable="true"</code>: enables direct editing.</li>
+	<li><code>onblur</code>: saves changes when user clicks away.</li>
+	<li><code>onkeydown</code>: handles pressing Enter to confirm edit.</li>
+</ul>
+	</section>
+	<section>
+	<h3>Step 7-2: Add the <code>editTask()</code> Function</h3>
+	<p>In your <code>script.js</code>, add:</p>
+<pre>
+<code>
+function editTask(index, span) {
+  const newText = span.textContent.trim();
+  if (newText) {
+    tasks[index].text = newText;
+    saveAndRender();
+  } else {
+    // Optional: delete task if text is emptied
+    deleteTask(index);
+  }
+}
+
+</code>
+</pre>
+	</section>
+	<section>
+		<h3>Step 7-3: Add <code>checkEnter()</code> to Handle Enter Key</h3>
+		<p>This makes the edit feel natural:</p>
+<pre>
+<code>
+function checkEnter(event) {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    event.target.blur(); // triggers onblur/editTask
+  }
+}
+</code>
+</pre>
+</section>
+	<section>
+		<h3>Step 7-4: Style Editing Behavior in CSS</h3>
+		<p>To highlight when a task is being edited:</p>
+<pre>
+<code>
+li span[contenteditable="true"]:focus {
+  outline: 2px dashed #007bff;
+  background-color: #eef;
+}
+
+</code>
+</pre>
+</section>
+</section>
+	<section>
+	<h3>Done! You can now: </h3>
+	<ul class="indent">
+		<li>Click task text to edit.</li>
+		<li>Press <code>Enter</code> or click away to save.</li>
+		<li>Clear the task to delete it (optional behavior)</li>
+	</ul>
+</section>
+
+	<h3>What's next</h3>
+	<p>Congratulation! you made it through the six step. We'll move on to adding <em>Theme Toggle</em> in the next step.</p>
+	<p>Click <a href="https://tieudongta.github.io/to-do/">here</a> to see how it works</p>
+	<p>Click <a href="post-tutorial-task-manager-to-do-list-step-8.html">here</a> if you want to move on to the next step.</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>

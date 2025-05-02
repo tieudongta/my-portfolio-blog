@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial To-Do List Step 8 – Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+<!-- Prism CSS (Theme) -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
+
+<!-- Prism Core JS -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+
+<!-- Optional: Add Language Support (e.g., HTML, JavaScript, Bash, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Task Manager/To-Do List Tutorial Step 8</h1>
+      <p class="tagline">This tutorial guides you from scratch to build your own To-Do List App</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>To-Do List Tutorial Step 8</h2>
+      <p class="date">Posted on May 03, 2025</p>
+	<section>
+		<h3>Tutorial Description</h3>
+		<p>Let's continue building your own <em>To-Do List App</em> from step 7.In this step, we'll implement the feature that allows you to <em>Toggle Theme (Light/Dark Mode)</em>.</p>
+	</section>
+	<section>
+		<h3>Goals</h3>
+		<p>Update the button Dark Mode so that it enables toggling between <em>light</em> and <em>dark</em> themes. This includes:</p>
+		<ul class="indent">
+			<li>Apply a class to the <code>&lt;body&gt;</code> to switch themes.</li>
+			<li>Storing the user's choice in <code>localStorage</code> so it persists.</li>
+			<li>Styling both themes with CSS.</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Step 8-1:Update Theme Toggle Button</code></h3>
+		<p>Replay your current button near the header with the below code:</p>
+<pre>
+<code>
+&lt;button id="theme-toggle" title="Toggle Light/Dark Mode"&gt;🌓&lt;/button&gt;
+</code>
+</pre>
+	</section>
+	<section>
+	<h3>Step 8-2: Add Theme Style in CSS</h3>
+	<p>Add these styles to your CSS file:</p>
+<pre>
+<code>
+:root {
+  --bg-color: #fff;
+  --text-color: #111;
+  --task-bg: #f9f9f9;
+}
+
+body.dark-theme {
+  --bg-color: #1e1e1e;
+  --text-color: #f1f1f1;
+  --task-bg: #2c2c2c;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+li {
+  background: var(--task-bg);
+  transition: background 0.3s;
+}
+
+#theme-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+</code>
+</pre>
+	</section>
+	<section>
+		<h3>Step 8-3: Add Theme Logic in <code>script.js</code></h3>
+		<p>Add the below code:</p>
+<pre>
+<code>
+const themeToggleBtn = document.getElementById('theme-toggle');
+
+// Load saved theme preference
+function loadTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  if (savedTheme === 'dark') {
+    document.body.classList.add('dark-theme');
+  }
+}
+
+// Toggle theme
+function toggleTheme() {
+  document.body.classList.toggle('dark-theme');
+  const theme = document.body.classList.contains('dark-theme') ? 'dark' : 'light';
+  localStorage.setItem('theme', theme);
+}
+
+themeToggleBtn.addEventListener('click', toggleTheme);
+loadTheme(); // Apply theme on load
+
+</code>
+</pre>
+</section>
+	<section>
+	<h3>Done! You can now: </h3>
+	<ul class="indent">
+		<li>Click the 🌓 button → page switches theme.</li>
+		<li>Refresh the page → theme stays as selected.</li>
+		<li>Task list and background should look correct in both modes.</li>
+	</ul>
+</section>
+
+	<h3>What's next</h3>
+	<p>Great job! You've completed a fully functional, feature-rich application. However, this is just the beginning. Consider diving into <a href="#">7 practical projects for beginners</a>, or practicing on your own project to deepen your understanding.</p>
+	<p>Click <a href="https://tieudongta.github.io/to-do/">here</a> to see how it works</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial To-Do List Step 5 – Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+<!-- Prism CSS (Theme) -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
+
+<!-- Prism Core JS -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+
+<!-- Optional: Add Language Support (e.g., HTML, JavaScript, Bash, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Task Manager/To-Do List Tutorial Step 5</h1>
+      <p class="tagline">This tutorial guides you from scratch to build your own To-Do List App</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>To-Do List Tutorial Step 5</h2>
+      <p class="date">Posted on May 03, 2025</p>
+	<section>
+		<h3>Tutorial Description</h3>
+		<p>Let's continue building your own <em>To-Do List App</em> from step 4.In this step, we'll implement the feature that allows you to <em>Filter and Search Tasks</em>- this feature helps users narrow down tasks by status or keywords.</p>
+	</section>
+	<section>
+		<h3>Goals</h3>
+		<ol class="indent">
+			<li>Filter tasks by: All, Active, Completed.</li>
+			<li>Search tasks by keyword.</li>
+		</ol>
+	</section>
+	<section>
+		<h3>Step 5-1: Add Filter Buttons in <code>index.html</code></h3>
+		<p>Inside your container (typically after the task list), add:</p>
+<pre>
+<code>&lt;div class="filters"&gt;
+  &lt;button onclick="setFilter('all')"&gt;All&lt;/button&gt;
+  &lt;button onclick="setFilter('active')"&gt;Active&lt;/button&gt;
+  &lt;button onclick="setFilter('completed')"&gt;Completed&lt;/button&gt;
+&lt;/div&gt;</code>
+</pre>
+	</section>
+	<section>
+	<h3>Step 5-2: Track Filter and Search Query in JS</h3>
+	<p>At the top of <code>script.js</code>, add:</p>
+<pre>
+<code>
+let currentFilter = 'all';
+let searchQuery = '';
+</code>
+</pre>
+	</section>
+	<section>
+		<h3>Step 5-3: Add function <code>setFilter()</code> and <code>updateFilterButtons()</code></h3>
+<pre>
+<code>
+function setFilter(filter) {
+  currentFilter = filter;
+  renderTasks();
+}
+
+function updateFilterButtons() {
+  const buttons = document.querySelectorAll('.filters button');
+  buttons.forEach(button => {
+    button.classList.toggle('active', button.textContent.toLowerCase() === currentFilter);
+  });
+}
+</code>
+</pre>
+</section>
+	<section>
+		<h3>Step 5-4: Add Search Input to HTML</h3>
+		<p>Right above the task list:</p>
+<pre>
+<code>
+<input type="text" id="search-input" placeholder="Search tasks..." />
+</code>
+</pre>
+<p>And style it in CSS:</p>
+<pre>
+<code>
+#search-input {
+  width: 100%;
+  padding: 0.5rem;
+  margin: 1rem 0 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+</code></pre>
+</section>
+</section>
+	<section>
+		<h3>Step 5-5: Handle Search Input in JS</h3>
+<pre>
+<code>document.getElementById('search-input').addEventListener('input', (e) => {
+  searchQuery = e.target.value;
+  renderTasks();
+});
+</code>
+</pre>
+</section>
+<section>
+	<h3>Step 5-6: Update <code>renderTasks()</code> to Apply Filter & Search</h3>
+	<p>Inside your <code>forEach</code> loop in <code>renderTasks()</code>:</p>
+<pre>
+<code>
+if (
+  (currentFilter === 'active' && task.completed) ||
+  (currentFilter === 'completed' && !task.completed) ||
+  (searchQuery && !task.text.toLowerCase().includes(searchQuery.toLowerCase()))
+) {
+  return;
+}
+</code>
+</pre>
+</section>
+	<section>
+		<h3>Try It Out</h3>
+		<ul class="indent">
+			<li>Filter between all/active/completed tasks.</li>
+			<li>Instantly search by text.
+</li>
+
+	<h3>What's next</h3>
+	<p>Congratulation! you made it through the fifth step. We'll move on to adding <em>Sorting Tasks by Due Date</em>in the next step.</p>
+	<p>Click <a href="https://tieudongta.github.io/to-do/">here</a> to see how it works</p>
+	<p>Click <a href="post-tutorial-task-manager-to-do-list-step-6.html">here</a> if you want to move on to the next step.</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial To-Do List Step 2 – Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+<!-- Prism CSS (Theme) -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
+
+<!-- Prism Core JS -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+
+<!-- Optional: Add Language Support (e.g., HTML, JavaScript, Bash, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Task Manager/To-Do List Tutorial Step 2</h1>
+      <p class="tagline">This tutorial guides you from scratch to build your own To-Do List App</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>To-Do List Tutorial Step 2</h2>
+      <p class="date">Posted on May 03, 2025</p>
+	<section>
+		<h3>Tutorial Description</h3>
+		<p>Let's continue building your own <em>To-Do List App</em> from step 1.In this step, we'll move on to adding the <em>Mark As Complete and Deleting Tasks</em> features. We'll improve the task list by making each task interactive.</p>
+	</section>
+	<section>
+		<h3>Goals of this step</h3>
+		<ol class="indent">
+			<li>Add a <em>checkbox</em> to mark tasks as completed</li>
+			<li>Add a <em>delete button</em> to remove tasks.</li>
+			<li>Update the rendering function to support these features.</li>
+		</ol>
+	</section>
+	<section>
+		<h3>Step 2-1: Modify function <code>renderTasks()</code> in <code>script.js</code></h3>
+		<p>Replace your existing <code>renderTasks()</code> with this version:</p>
+<pre>
+<code>
+function renderTasks() {
+  taskList.innerHTML = '';
+
+  tasks.forEach((task, index) => {
+    const li = document.createElement('li');
+
+    // Checkbox for marking complete
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = task.completed;
+    checkbox.addEventListener('change', () => toggleComplete(index));
+
+    // Span for task text
+    const span = document.createElement('span');
+    span.textContent = task.text;
+    if (task.completed) {
+      span.classList.add('completed');
+    }
+
+    // Delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.textContent = '✖';
+    deleteBtn.className = 'delete-btn';
+    deleteBtn.addEventListener('click', () => deleteTask(index));
+
+    li.appendChild(checkbox);
+    li.appendChild(span);
+    li.appendChild(deleteBtn);
+
+    taskList.appendChild(li);
+  });
+}
+</code>
+</pre>
+	</section>
+	<section>
+	<h3>Step 2-2: Add These Functions Below <code>addTask()</code></h3>
+<pre>
+<code>
+function toggleComplete(index) {
+  tasks[index].completed = !tasks[index].completed;
+  saveAndRender();
+}
+
+function deleteTask(index) {
+  tasks.splice(index, 1);
+  saveAndRender();
+}
+
+function saveAndRender() {
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+  renderTasks();
+}
+</code>
+</pre>
+	</section>
+	<section>
+		<h3>Step 2-3: Update CSS in <code>style.css</code></h3>
+		<p>Make completed tasks look crossed out:</p>
+<pre>
+<code>.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+</code>
+</pre>
+</section>
+	<section>
+		<h3>What You Can Test Now:</h3>
+		<ul class="indent">
+			<li>Add a few tasks.</li>
+			<li>Check a box to mark them complete - the text strikes through.</li>
+			<li>Click the X to delete a task.</li>
+			<li>Refresh - your changes persist thanks to <code>localStorage</code>.</li>
+		</ul>
+	</section>
+	<h3>What's next</h3>
+	<p>Congratulation! you made it through the second step. We'll move on to editing tasks in the next step.</p>
+	<p>Click <a href="https://tieudongta.github.io/to-do/">here</a> to see how it works</p>
+	<p>Click <a href="post-tutorial-task-manager-to-do-list-step-3.html">here</a> if you want to move on to the next step.</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>

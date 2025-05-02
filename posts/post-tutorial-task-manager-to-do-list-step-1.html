@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial To-Do List Step 1 – Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+<!-- Prism CSS (Theme) -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
+
+<!-- Prism Core JS -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+
+<!-- Optional: Add Language Support (e.g., HTML, JavaScript, Bash, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Task Manager/To-Do List Tutorial Step 1</h1>
+      <p class="tagline">This tutorial guides you from scratch to build your own To-Do List App</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>To-Do List Tutorial Step 1</h2>
+      <p class="date">Posted on May 03, 2025</p>
+	<section>
+		<h3>Tutorial Description</h3>
+		<p>Let's build your own <em>To-Do List App</em> from scratch, one step at a time - no shortcuts -  so you can <em>understand very layer</em> (HTML -> css -> JavaScript) and why we do each part</p>
+	</section>
+	<section>
+		<h3>Step 1-1: Set Up Basic HTML Structure</h3>
+		<p>Let's start with a basic HTML file that defines the structure of the app: title, input field, and a list</p>
+		<p>Here's the code for <code>index.html</code></p>
+<pre>
+<code>
+&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8" /&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"/&gt;
+  &lt;title&gt;To-Do List&lt;/title&gt;
+  &lt;link rel="stylesheet" href="style.css" /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;div class="container"&gt;
+    &lt;div class="header"&gt;
+      &lt;h1&gt;My To-Do List&lt;/h1&gt;
+      &lt;button id="theme-toggle"&gt;Dark Mode&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;form id="todo-form"&gt;
+      &lt;input type="text" id="task-input" placeholder="Enter a new task" required /&gt;
+      &lt;button type="submit"&gt;Add&lt;/button&gt;
+    &lt;/form&gt;
+
+    &lt;ul id="task-list"&gt;&lt;/ul&gt;
+  &lt;/div&gt;
+
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+
+</code>
+</pre>
+	</section>
+	<section>
+	<h3>What you've done in this step:</h3>
+	<ul class="indent">
+		<li>Created a container for the app</li>
+		<li>Added a heading and a theme toggle button</li>
+		<li>Added a form for new tasks</li>
+		<li>Left a <code>&lt;ul&gt;</code> place holder where tasks will appear</li>
+		<li>Linked a stylessheet (<code>style.css</code>) and a JavaScript file (<code>script.js</code>)</li></li>
+	</ul>
+	</section>
+	<section>
+		<h3>Now Your Turn</h3>
+		<ol class="indent">
+			<li>Create a folder name <code>to-do</code></li>
+			<li>Create <code>index.html</code> in the folder</li>
+			<li>Type the code above into <code>index.html</code></li>
+			<li>Make sure it's loading in your browser with nothing broken</li>
+		</ol>
+	</section>
+	<section>
+	<h3>Step 1-2: Add Basic CSS Styling</h3>
+	<p>We'll style the layout to make it clean, centered, and user-friendly. Create a new file called <code>style.css</code> in the same folder as your HTML.</p>
+<pre>
+<code>
+/* Global styles */
+body {
+  font-family: sans-serif;
+  background-color: #f4f4f4;
+  padding: 2rem;
+  margin: 0;
+}
+
+/* Container styling */
+.container {
+  max-width: 400px;
+  margin: auto;
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Header layout */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Form styling */
+form {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+input[type="text"] {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+button {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+/* Task list */
+ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 1rem;
+}
+
+li {
+  background: #eee;
+  margin-bottom: 0.5rem;
+  padding: 0.6rem;
+  border-radius: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+li.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+</code>
+</pre>
+	</section>
+	
+	<section>
+		<h3>What you've learned:</h3>
+		<ul class="indent">
+			<li>Layout styling (<code>.container</code>, <code>.header</code>,<code>form</code>)</li>
+			<li>How to use Flexbox for layout</li>
+			<li>Visual styling for each task (<code>li</code>)</li>
+			<li>Class-based styling (<code>.completed</code>) for completed tasks</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Your Turn</h3>
+		<ol class="indent">
+			<li>Create a <code>style.css</code> file</li>
+			<li>Type the code above</li>
+			<li>Reload the browser - you should now see:</li>
+			<ul class="indent">
+				<li>A clean, centered UI</li>
+				<li>Input field and Add button side by side</li>
+				<li>Empty list waiting for tasks</li>
+			</ul>
+		</ol>
+	</section>
+	<section>
+		<h3>Step 1-3: JavaScript for Task Creation</h3>
+		<p>In this step, we'll:</p>
+		<ol class="indent">
+		<li>Capture the input from the user</li>
+		<li>Store the tasks in the browser's <code>localStorage</code> to persist data.</li>
+		<li>Display the tasks dynamically in the <code>&lt;ul&gt;</code> element</li>
+		</ol>
+	</section>
+	<section>
+		<h3>Sample code</h3>
+		<p>Create a new file called <code>script.js</code> and add the following code:</p>
+<pre>
+<code>
+// Get references to HTML elements
+const form = document.getElementById('todo-form');
+const taskInput = document.getElementById('task-input');
+const taskList = document.getElementById('task-list');
+
+// Initialize an array to store tasks (use localStorage for persistence)
+let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+// Render tasks to the UI
+function renderTasks() {
+  // Clear the current list
+  taskList.innerHTML = '';
+
+  // Loop through tasks and create <li> for each
+  tasks.forEach((task, index) => {
+    const li = document.createElement('li');
+    li.textContent = task.text;
+
+    // Add a 'completed' class if the task is marked as completed
+    if (task.completed) {
+      li.classList.add('completed');
+    }
+
+    // Append the <li> to the task list
+    taskList.appendChild(li);
+  });
+}
+
+// Add task to the array and re-render the list
+function addTask(e) {
+  e.preventDefault();  // Prevent form submission
+
+  const text = taskInput.value.trim();
+
+  if (text === '') return;  // Don't add empty tasks
+
+  // Add the new task
+  tasks.push({ text, completed: false });
+
+  // Save tasks to localStorage
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+
+  // Clear the input field and re-render tasks
+  taskInput.value = '';
+  renderTasks();
+}
+
+// Event listener for form submission
+form.addEventListener('submit', addTask);
+
+// Initial rendering of tasks on page load
+renderTasks();
+
+</code>
+</pre>
+	</section>
+	<section>
+		<h3>What's happening in the code</h3>
+		<ul class="indent">
+			<li><em>Capturing input:</em> We get a reference to the task input field using <code>getElementById</code>.</li>
+			<li><em>Storing tasks:</em> Tasks are stored in an array(<code>tasks</code>). They are saved to the browser's <code>localStorage</code> so they persist even when the page reloads.</li>
+			<li><em>Rendering tasks:</em> The <code>renderTasks()</code> function is responsible for rendering the tasks as <code>&lt;li&gt;</code> elements inside the <code>&lt;ul&gt;</code> with the id <code>task-list</code></li>
+			<li><em>Handling form submission:</em> The <code>addTask()</code> function is triggered when the form is submitted. It adds the new task to the array, updates <code>localStorage</code>, and re-renders the list.</li>
+		</ul>
+	</section>
+	<section>
+		<h3>Your Turn:</h3>
+		<ol class="indent">
+			<li>Create a <code>script.js</code>file.</li>
+			<li>Type in the code above</li>
+			<li>Reload the page.</li>
+			<li>Test the app by typing a task into the field and clicking the "Add" button - the task should appear in the list, and it will stay after a page refresh (thanks to <code>localStorage)</code>.</li>
+		</ol>
+	</section>
+	<h3>What's next</h3>
+	<p>Congratulation! you made it through the first and most important step. We'll move on to adding the "mark as complete" feature and editing tasks in the next step.</p>
+	<p>Click <a href="https://tieudongta.github.io/to-do/">here</a> to see how it works</p>
+	<p>Click <a href="post-tutorial-task-manager-to-do-list-step-2.html">here</a> if you want to move on to the next steps.</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>

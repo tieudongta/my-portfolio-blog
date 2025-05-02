@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial To-Do List Step 6 – Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+<!-- Prism CSS (Theme) -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
+
+<!-- Prism Core JS -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+
+<!-- Optional: Add Language Support (e.g., HTML, JavaScript, Bash, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Task Manager/To-Do List Tutorial Step 6</h1>
+      <p class="tagline">This tutorial guides you from scratch to build your own To-Do List App</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>To-Do List Tutorial Step 6</h2>
+      <p class="date">Posted on May 03, 2025</p>
+	<section>
+		<h3>Tutorial Description</h3>
+		<p>Let's continue building your own <em>To-Do List App</em> from step 5.In this step, we'll implement the feature that allows you to <em>Sort Tasks by Due Date</em>- this will let users view taks in order of upcoming deadlines.</p>
+	</section>
+	<section>
+		<h3>Goals</h3>
+		<ol class="indent">
+			<li>Add a dropdown to sort tasks by due date.</li>
+		</ol>
+	</section>
+	<section>
+		<h3>Step 6-1: Add a Sort Dropdown in HTML</h3>
+		<p>Place it near your search input(above the task list):</p>
+<pre>
+<code>
+&lt;select id="sort-select"&gt;
+  &lt;option value="default"&gt;Sort by...&lt;/option&gt;
+  &lt;option value="due-date"&gt;Due Date&lt;/option&gt;
+&lt;/select&gt;
+</code>
+</pre>
+<h3>Add Some CSS:</h3>
+<pre>
+<code>#sort-select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+</code>
+</pre>
+	</section>
+	<section>
+	<h3>Step 6-2: Track Sorting Method in JS</h3>
+	<p>At the top of <code>script.js</code>, add:</p>
+<pre>
+<code>
+let sortMethod = 'default';
+</code>
+</pre>
+	</section>
+	<section>
+		<h3>Step 6-3: Add a Listener to the Dropdown</h3>
+		<p>Below <code>renderTasks()</code>:</p>
+<pre>
+<code>
+document.getElementById('sort-select').addEventListener('change', (e) => {
+  sortMethod = e.target.value;
+  renderTasks();
+});
+</code>
+</pre>
+</section>
+	<section>
+		<h3>Step 6-4: Update <code>renderTasks()</code> to Sort</h3>
+		<p>Before looping through tasks in <code>renderTasks()</code>:</p>
+<pre>
+<code>
+let sortedTasks = [...tasks]; // clone array
+
+if (sortMethod === 'due-date') {
+  sortedTasks.sort((a, b) => {
+    if (!a.dueDate) return 1;
+    if (!b.dueDate) return -1;
+    return new Date(a.dueDate) - new Date(b.dueDate);
+  });
+}
+</code>
+</pre>
+<p>Use <code>sortedTasks.forEach(....)</code> instead of <code>tasks.forEach(...)</code></p>
+</section>
+</section>
+	<section>
+</section>
+
+	<h3>What's next</h3>
+	<p>Congratulation! you made it through the six step. We'll move on to adding <em>Inline Editing of Tasks</em>in the next step.</p>
+	<p>Click <a href="https://tieudongta.github.io/to-do/">here</a> to see how it works</p>
+	<p>Click <a href="post-tutorial-task-manager-to-do-list-step-7.html">here</a> if you want to move on to the next step.</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>

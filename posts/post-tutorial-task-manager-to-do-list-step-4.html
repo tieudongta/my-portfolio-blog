@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial To-Do List Step 4 – Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+<!-- Prism CSS (Theme) -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1/themes/prism.css" rel="stylesheet" />
+
+<!-- Prism Core JS -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/prism.min.js"></script>
+
+<!-- Optional: Add Language Support (e.g., HTML, JavaScript, Bash, etc.) -->
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-html.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Task Manager/To-Do List Tutorial Step 4</h1>
+      <p class="tagline">This tutorial guides you from scratch to build your own To-Do List App</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>To-Do List Tutorial Step 4</h2>
+      <p class="date">Posted on May 03, 2025</p>
+	<section>
+		<h3>Tutorial Description</h3>
+		<p>Let's continue building your own <em>To-Do List App</em> from step 3.In this step, we'll implement the feature that allows you to <em>Add Due Date</em>- this makes the to-do list more functional by allowing users to specify deadlines.</p>
+	</section>
+	<section>
+		<h3>Goals</h3>
+		<ol class="indent">
+			<li>Let users add a due date when creating a task.</li>
+			<li>Display the due date next to each task</li>
+			<li>Visually highlight tasks that are due today or overdue.</li>
+		</ol>
+	</section>
+	<section>
+		<h3>Step 4-1: Update the Form in <code>index.html</code></h3>
+		<p>Add a date input field beside the task input:</p>
+<pre>
+<code>&lt;form id="todo-form"&gt;
+  &lt;input type="text" id="task-input" placeholder="Enter a new task" required /&gt;
+  &lt;input type="date" id="due-date" /&gt;
+  &lt;button type="submit"&gt;Add&lt;/button&gt;
+&lt;/form&gt;
+</code>
+</pre>
+	</section>
+	<section>
+	<h3>Step 4-2: Update <code>addTask()</code> in <code>script.js</code></h3>
+<pre>
+<code>//Add task to the array and re-render the list
+function addTask(e){
+	e.preventDefault(); //Prevent form submission
+	
+	const text = taskInput.value.trim();
+	const dueInput = document.getElementById('due-date');
+	const dueDate = dueInput.value;
+	
+	if(!text) return; //Don't add empty tasks
+	console.log(dueDate);
+	//Add the new task
+	tasks.push({text, complete: false, dueDate});
+	
+	//Save tasks to localStorage
+	localStorage.setItem('tasks', JSON.stringify(tasks));
+	
+	//Clear the input field and re-render tasks
+	taskInput.value = '';
+	dueInput.value = '';
+	saveAndRender();
+}</code>
+</pre>
+	</section>
+	<section>
+		<h3>Step 4-3: Display Due Dates in <code>renderTasks()</code></h3>
+		<p>Right below the line <code>li.appendChild(span);</code>, add this:</p>
+<pre>
+<code>// Due date label
+if (task.dueDate) {
+  const due = document.createElement('small');
+  due.textContent = `Due: ${task.dueDate}`;
+  due.className = 'due-date ' + getDateClass(task.dueDate);
+  span.after(due);
+}</code>
+</pre>
+</section>
+	<section>
+		<h3>Step 4-4: Add <code>getDateClass()</code> function for Styling</h3>
+		<p>Add this helper function:</p>
+<pre>
+<code>function getDateClass(dateStr) {
+  const today = new Date().toISOString().split('T')[0];
+  if (dateStr < today) return 'overdue';
+  if (dateStr === today) return 'due-today';
+  return '';
+}
+</code>
+</pre>
+</section>
+</section>
+	<section>
+		<h3>Add CSS for Due Dates</h3>
+		<p>In <code>style.css</code>:</p>
+<pre>
+<code>.due-date {
+  display: block;
+  font-size: 0.75rem;
+  color: #666;
+  margin-top: 2px;
+}
+.overdue {
+  color: red;
+  font-weight: bold;
+}
+.due-today {
+  color: orange;
+  font-weight: bold;
+}
+</code>
+</pre>
+</section>
+	<section>
+		<h3>Try It Out</h3>
+		<ul class="indent">
+			<li>Assign due dates to tasks.</li>
+			<li>See if tasks are due today or overdue(with color!)
+</li>
+
+	<h3>What's next</h3>
+	<p>Congratulation! you made it through the fourth step. We'll move on to adding Filtering and Searching Tasks in the next step.</p>
+	<p>Click <a href="https://tieudongta.github.io/to-do/">here</a> to see how it works</p>
+	<p>Click <a href="post-tutorial-task-manager-to-do-list-step-5.html">here</a> if you want to move on to the next step.</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>
