@@ -55,47 +55,106 @@ function loadFromLocal() {
 //Toggle chart type
 let currentChartType = "bar"; //Default
 
-function renderChart(data){
-    const ctx = document.getElementById("progressChart").getContext("2d");
-    const counts = {
-        "Pending": 0,
-        "Ongoing": 0,
-        "Completed": 0
-    }
-    data.forEach(item => counts[item.status]++);
-    //Clear previous chart if it exists
-    if (window.fccChart) window.fccChart.destroy();
+// function renderChart(data){
+//     const ctx = document.getElementById("progressChart").getContext("2d");
+//     const counts = {
+//         "Pending": 0,
+//         "Ongoing": 0,
+//         "Completed": 0
+//     }
+//     data.forEach(item => counts[item.status]++);
+//     //Clear previous chart if it exists
+//     if (window.fccChart) window.fccChart.destroy();
 
+//     window.fccChart = new Chart(ctx, {
+//         type: currentChartType,
+//         data:{
+//             labels: Object.keys(counts),
+//             datasets:[{
+//                 label: "Certifications",
+//                 data: Object.values(counts),
+//                 backgroundColor:["lightgray", "gold", "lightgreen"]
+//             }]
+//         },
+//         options:{
+//             responsive: true,
+//             scales: currentChartType === "bar"?{
+//                 y:{
+//                     beginAtZero: true,
+//                     ticks:{precision: 0}
+//                 }
+//             }:{},
+//             plugins:{
+//                 legend:{
+//                     display: currentChartType === "pie"
+//                 },
+//                 title:{
+//                     display: true,
+//                     text: "Certification Progress"
+//                 }
+//             }
+//         }
+//     });
+// }
+function renderChart(data) {
+    const ctx = document.getElementById("progressChart").getContext("2d");
+  
+    // Prepare stacked bar segments
+    const statusColors = {
+      "Pending": "lightgray",
+      "Ongoing": "gold",
+      "Completed": "lightgreen"
+    };
+  
+    const chartData = {
+      labels: ["Certifications"],
+      datasets: data.map((item, index) => ({
+        label: item.title,
+        data: [1], // Each item takes equal width
+        backgroundColor: statusColors[item.status] || "gray"
+      }))
+    };
+  
+    if (window.fccChart) window.fccChart.destroy();
+  
     window.fccChart = new Chart(ctx, {
-        type: currentChartType,
-        data:{
-            labels: Object.keys(counts),
-            datasets:[{
-                label: "Certifications",
-                data: Object.values(counts),
-                backgroundColor:["lightgray", "gold", "lightgreen"]
-            }]
-        },
-        options:{
-            responsive: true,
-            scales: currentChartType === "bar"?{
-                y:{
-                    beginAtZero: true,
-                    ticks:{precision: 0}
-                }
-            }:{},
-            plugins:{
-                legend:{
-                    display: currentChartType === "pie"
-                },
-                title:{
-                    display: true,
-                    text: "Certification Progress"
-                }
+      type: "bar",
+      data: chartData,
+      options: {
+        indexAxis: "y", // 🔁 horizontal bar
+        responsive: true,
+        scales: {
+          x: {
+            stacked: true,
+            display: false
+          },
+          y: {
+            stacked: true,
+            ticks: {
+              display: false
             }
+          }
+        },
+        plugins: {
+          legend: {
+            position: "bottom"
+          },
+          tooltip: {
+            callbacks: {
+              label: function (context) {
+                return `${context.dataset.label} - 1 item (${data[context.dataIndex].status})`;
+              }
+            }
+          },
+          title: {
+            display: true,
+            text: "Overall Progress (1 bar = 1 certification)"
+          }
         }
+      }
     });
-}
+  }
+  
 //Add Toggle Logic
 document.getElementById("toggleChart").addEventListener("click", () => {
     currentChartType = currentChartType === "bar" ? "pie" : "bar";
