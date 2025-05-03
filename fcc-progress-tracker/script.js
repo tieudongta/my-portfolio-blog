@@ -63,7 +63,7 @@ function renderChart(data){
     //Clear previous chart if it exists
     if (window.fccChart) window.fccChart.destroy();
 
-    window.fccChart = new CharacterData(ctx, {
+    window.fccChart = new Chart(ctx, {
         type: "pie",
         data:{
             labels: Object.keys(counts),
