@@ -143,7 +143,7 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     sampleTodos.forEach(todo =>{
         const li = document.createElement("li");
 
-        li.className = 'todo=item ${todo.status ?"completed" : ""}';
+        li.className = `todo-item ${todo.status ? "completed" : ""}`;
         li.innerHTML = `
             <div class="todo-category"><strong>${todo.category}</strong></div>
             <div class="todo-text">${todo.text}</div>
