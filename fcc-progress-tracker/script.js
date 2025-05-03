@@ -52,6 +52,9 @@ function loadFromLocal() {
   renderProgress(progress);
 })();
 //Chart functions
+//Toggle chart type
+let currentChartType = "bar"; //Default
+
 function renderChart(data){
     const ctx = document.getElementById("progressChart").getContext("2d");
     const counts = {
@@ -64,19 +67,26 @@ function renderChart(data){
     if (window.fccChart) window.fccChart.destroy();
 
     window.fccChart = new Chart(ctx, {
-        type: "pie",
+        type: currentChartType,
         data:{
             labels: Object.keys(counts),
             datasets:[{
+                label: "Certifications",
                 data: Object.values(counts),
                 backgroundColor:["lightgray", "gold", "lightgreen"]
             }]
         },
         options:{
             responsive: true,
+            scales: currentChartType === "bar"?{
+                y:{
+                    beginAtZero: true,
+                    ticks:{precision: 0}
+                }
+            }:{},
             plugins:{
                 legend:{
-                    position: "bottom"
+                    display: currentChartType === "pie"
                 },
                 title:{
                     display: true,
@@ -86,3 +96,13 @@ function renderChart(data){
         }
     });
 }
+//Add Toggle Logic
+document.getElementById("toggleChart").addEventListener("click", () => {
+    currentChartType = currentChartType === "bar" ? "pie" : "bar";
+    document.getElementById("toggleChart").textContent =
+      currentChartType === "bar" ? "Switch to Pie" : "Switch to Bar";
+  
+    const progressData = loadFromLocal(); // or re-fetch if needed
+    renderChart(progressData);
+  });
+  
