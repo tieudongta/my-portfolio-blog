@@ -143,7 +143,7 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     sampleTodos.forEach(todo =>{
         const li = document.createElement("li");
         li.className = "todo-item";
-        li.innerHTML = '<strong>${todo.text}</strong> (Due: ${todo.due})';
+        li.innerHTML = `<strong>${todo.text}</strong> (Due: ${todo.due})`;
         list.appendChild(li);
     })
   }
