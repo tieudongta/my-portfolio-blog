@@ -1,5 +1,5 @@
 const TRACKER_URL = "https://raw.githubusercontent.com/tieudongta/my-portfolio-blog/main/fcc-progress-tracker/progress.json";
-const STATUS_ORDER = ["Not Started", "In Progress", "Completed"];
+const STATUS_ORDER = ["Pending", "Ongoing", "Completed"];
 
 async function fetchProgress() {
   const res = await fetch(TRACKER_URL);
