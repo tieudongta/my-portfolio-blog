@@ -92,11 +92,9 @@ function renderChart(data){
         }: chartData,
         options:{
             responsive: true,
+            indexAxis: "y", // 🔁 horizontal bar
             scales: currentChartType === "bar"?{
-                indexAxis: "y", // 🔁 horizontal bar
-                responsive: true,
-                scales: {
-                    x: {
+                x: {
                     stacked: true,
                     display: false
                     },
@@ -106,7 +104,6 @@ function renderChart(data){
                             display: false
                         }
                     }
-                }
             }:{},
             plugins:{
                 legend:{
