@@ -53,7 +53,7 @@ function loadFromLocal() {
 })();
 //Chart functions
 function renderChart(data){
-    const ctx = document.getElementById("progressChart").getContent("2d");
+    const ctx = document.getElementById("progressChart").getContext("2d");
     const counts = {
         "Pending": 0,
         "Ongoing": 0,
