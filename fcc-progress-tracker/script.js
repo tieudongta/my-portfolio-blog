@@ -147,3 +147,5 @@ document.getElementById("toggleChart").addEventListener("click", () => {
         list.appendChild(li);
     })
   }
+  //call it on page load
+  renderTodos();
