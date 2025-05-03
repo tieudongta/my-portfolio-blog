@@ -204,3 +204,24 @@ footer{
 	margin-top: 2rem;
 	font-size: 0.9rem;
 }
+table {
+	width: 80%;
+	border-collapse: collapse;
+	font-family: Arial, sans-serif;
+  }
+  th, td {
+	border: 1px solid #ccc;
+	padding: 8px 12px;
+	text-align: left;
+  }
+  th {
+	background-color: #f4f4f4;
+  }
+  tfoot td {
+	font-weight: bold;
+  }
+  caption {
+	caption-side: top;
+	font-size: 1.2em;
+	margin-bottom: 10px;
+  }

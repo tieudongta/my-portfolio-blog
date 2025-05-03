@@ -1,0 +1,53 @@
+[
+    {
+      "title": "Responsive Web Design",
+      "days": 10,
+      "status": "Not Started"
+    },
+    {
+      "title": "JavaScript Algorithms and Data Structures",
+      "days": 15,
+      "status": "Not Started"
+    },
+    {
+      "title": "Front End Development Libraries",
+      "days": 10,
+      "status": "Not Started"
+    },
+    {
+        "title": "Back-End + APIs",
+        "days": 12,
+        "status": "Not Started"
+    },
+    {
+        "title": "Relational DB",
+        "days": 8,
+        "status": "Not Started"
+    },
+    {
+        "title": "Quality Assurance",
+        "days": 6,
+        "status": "Not Started"
+    },
+    {
+        "title": "Python Basics",
+        "days": 10,
+        "status": "Not Started"
+    },
+    {
+        "title": "Python Data Analysis",
+        "days": 8,
+        "status": "Not Started"
+    },
+    {
+        "title": "Info Security",
+        "days": 6,
+        "status": "Not Started"
+    },
+    {
+        "title": "Machine Learning",
+        "days": 12,
+        "status": "Not Started"
+    }
+  ]
+  
