@@ -32,6 +32,7 @@ function renderProgress(data) {
 
     container.appendChild(card);
   });
+  renderChart(data);
 }
 
 function saveToLocal(data) {
@@ -50,3 +51,38 @@ function loadFromLocal() {
   const progress = localData || remoteData;
   renderProgress(progress);
 })();
+//Chart functions
+function renderChart(data){
+    const ctx = document.getElementById("progressChart").getContent("2d");
+    const counts = {
+        "Pending": 0,
+        "Ongoing": 0,
+        "Completed": 0
+    }
+    data.forEach(item => counts[item.status]++);
+    //Clear previous chart if it exists
+    if (window.fccChart) window.fccChart.destroy();
+
+    window.fccChart = new CharacterData(ctx, {
+        type: "pie",
+        data:{
+            labels: Object.keys(counts),
+            datasets:[{
+                data: Object.values(counts),
+                backgroundColor:["lightgray", "gold", "lightgreen"]
+            }]
+        },
+        options:{
+            responsive: true,
+            plugins:{
+                legend:{
+                    position: "bottom"
+                },
+                title:{
+                    display: true,
+                    text: "Certification Progress"
+                }
+            }
+        }
+    });
+}
