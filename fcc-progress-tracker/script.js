@@ -71,7 +71,7 @@ function renderChart(data){
     };
     const chartData = {
         labels: ["Certification"],
-        datasets: data.((item, index) =>({
+        datasets: data.map((item, index) =>({
             label: item.title,
             data: [1], //Each item takes equal width
             backgroundColor: stausColrs[item.status] || "gray"
