@@ -93,16 +93,16 @@ function renderChart(data){
         options:{
             responsive: true,
             scales: currentChartType === "bar"?{
-                indexAxis: "y", //horizontal bar
+                indexAxis: "y", // 🔁 horizontal bar
                 responsive: true,
-                scales:{
-                    x:{
-                        stacked: true,
-                        display: false
-                    }, 
-                    y:{
-                        stacked: true,
-                        ticks:{
+                scales: {
+                    x: {
+                    stacked: true,
+                    display: false
+                    },
+                    y: {
+                    stacked: true,
+                        ticks: {
                             display: false
                         }
                     }
