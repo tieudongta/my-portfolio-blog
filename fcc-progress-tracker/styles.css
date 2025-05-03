@@ -52,7 +52,7 @@ body {
     align-items: flex-start;
     margin-top: 2rem;
   }
-  #chart-wrapper{
+  #chart-wrapper, #tracker, #todo-section{
     flex: 1;
     min-width: 250px;
     max-width: 100%;
