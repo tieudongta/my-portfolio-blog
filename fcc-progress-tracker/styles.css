@@ -55,9 +55,22 @@ body {
   #chart-wrapper{
     flex: 1;
     min-width: 250px;
-    max-width: 400px;
+    max-width: 100%;
   }
   #progressChart{
     width: 100%;
     height: auto;
+  }
+  #toggleChart{
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border:none;
+    border-radius: 5px;
+    background: #007acc;
+    color: white;
+    cursor: pointer;
+  }
+  #toggleChart:hover{
+    background: #005ea3;
   }
