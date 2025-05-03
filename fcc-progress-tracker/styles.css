@@ -96,6 +96,7 @@ body {
     font-weight: bold;
     margin-bottom: 0.25rem;
     color: #333;
+    text-align: left;
   }
   .todo-text{
     text-align: left;
@@ -105,5 +106,7 @@ body {
   .todo-due{
     font-size:0.75rem;
     color: #666;
+    font-style: italic;
+    text-align: right;
   }
   
