@@ -132,4 +132,18 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     const progressData = loadFromLocal(); // or re-fetch if needed
     renderChart(progressData);
   });
-  
+  //Todo list
+  function renderTodos(){
+    const list = document.getElementById("todo-list");
+    list.innerHTML = ""; // Clear previous list
+    const sampleTodos = [
+        { text: "Build About section", due: "2025-05-03", status: false },
+        { text: "Create hero layout", due: "2025-05-04", status: true }
+    ];
+    sampleTodos.forEach(todo =>{
+        const li = document.createElement("li");
+        li.className = "todo-item";
+        li.innerHTML = '<strong>${todo.text}</strong> (Due: ${todo.due})';
+        list.appendChild(li);
+    })
+  }
