@@ -74,7 +74,7 @@ function renderChart(data){
         datasets: data.map((item, index) =>({
             label: item.title,
             data: [1], //Each item takes equal width
-            backgroundColor: stausColrs[item.status] || "gray"
+            backgroundColor: statusColors[item.status] || "gray"
         }))
     };
     //Clear previous chart if it exists
