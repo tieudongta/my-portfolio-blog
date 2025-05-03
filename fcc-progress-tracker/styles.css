@@ -9,8 +9,9 @@ body {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    max-width: 1000px;
+    min-width: 300px;
     margin: 0 auto;
+    flex: 2;
   }
   
   .card {
@@ -43,4 +44,20 @@ body {
   .Completed {
     background: lightgreen;
   }
-  
+  .layout{
+    display:flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 2rem;
+  }
+  #chart-wrapper{
+    flex: 1;
+    min-width: 250px;
+    max-width: 400px;
+  }
+  #progressChart{
+    width: 100%;
+    height: auto;
+  }
