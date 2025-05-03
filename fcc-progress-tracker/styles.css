@@ -1,0 +1,46 @@
+body {
+    font-family: sans-serif;
+    background: #f0f2f5;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  #tracker {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .status {
+    font-weight: bold;
+    padding: 0.3rem 0.5rem;
+    border-radius: 4px;
+  }
+  
+  .Not\ Started {
+    background: lightgray;
+  }
+  
+  .In\ Progress {
+    background: gold;
+  }
+  
+  .Completed {
+    background: lightgreen;
+  }
+  
