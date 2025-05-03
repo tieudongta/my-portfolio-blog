@@ -137,13 +137,18 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     const list = document.getElementById("todo-list");
     list.innerHTML = ""; // Clear previous list
     const sampleTodos = [
-        { text: "Build About section", due: "2025-05-03", status: false },
-        { text: "Create hero layout", due: "2025-05-04", status: true }
+        { category: "Personal Portfolio", text: "Build About section", due: "2025-05-03", status: false },
+        { category: "Product landing", text: "Create hero layout", due: "2025-05-04", status: true }
     ];
     sampleTodos.forEach(todo =>{
         const li = document.createElement("li");
-        li.className = "todo-item";
-        li.innerHTML = `<strong>${todo.text}</strong> (Due: ${todo.due})`;
+
+        li.className = 'todo=item ${todo.status ?"completed" : ""}';
+        li.innerHTML = `
+            <div class="todo-category"><strong>${todo.category}</strong></div>
+            <div class="todo-text">${todo.text}</div>
+            <div class="todu-due">Due: ${todo.due}</div>
+        `;
         list.appendChild(li);
     })
   }
