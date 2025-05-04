@@ -175,12 +175,12 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     const dropdown = document.getElementById("category-fileter");
     const categories = [...new Set(todoData.map(todo => todo.category))];
     //Clear exsting options except "All"
-    console.log(categories);
     dropdown.innerHTML = '<option value="All">All</option>';
     categories.forEach(cat => {
         const option = document.createElement("option");
         option.value = cat;
         option.textContent = cat;
+        console.log(option);
         dropdown.appendChild(option);
     });
   }
