@@ -175,6 +175,7 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     const dropdown = document.getElementById("category-fileter");
     const categories = [...new Set(todoData.map(todo => todo.category))];
     //Clear exsting options except "All"
+
     dropdown.innerHTML = '<option value="All">All</option>';
     categories.forEach(cat => {
         const option = document.createElement("option");
