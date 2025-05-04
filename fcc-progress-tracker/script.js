@@ -174,11 +174,11 @@ document.getElementById("toggleChart").addEventListener("click", () => {
   function populateCategoryDropdowns() {
     const cards = document.querySelectorAll("#tracker .card h3");
     const categories = new Set();
-  
+    console.log(cards);
     cards.forEach(card => {
       categories.add(card.textContent.trim());
     });
-  
+    
     const filterDropdown = document.getElementById("category-filter");
     const taskDropdown = document.getElementById("task-category");
   
