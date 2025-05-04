@@ -1,6 +1,21 @@
 const TRACKER_URL = "https://raw.githubusercontent.com/tieudongta/my-portfolio-blog/main/fcc-progress-tracker/progress.json";
 const STATUS_ORDER = ["Pending", "Ongoing", "Completed"];
-
+//dummy data to be delete
+let todoData = [
+    {
+      category: "Personal Portfolio Website",
+      text: "Build About section",
+      due: "2025-05-03",
+      completed: false
+    },
+    {
+      category: "Product Landing Page",
+      text: "Create hero layout",
+      due: "2025-05-04",
+      completed: true
+    }
+  ];
+  
 async function fetchProgress() {
   const res = await fetch(TRACKER_URL);
   return await res.json();
