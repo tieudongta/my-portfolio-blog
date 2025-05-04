@@ -171,19 +171,21 @@ document.getElementById("toggleChart").addEventListener("click", () => {
         list.appendChild(li);
     })
   }
-  function populateFilterDropdown(){
-    const dropdown = document.getElementById("category-fileter");
+  function populateFilterDropdown() {
+    const dropdown = document.getElementById("category-filter");
     const categories = [...new Set(todoData.map(todo => todo.category))];
-    //Clear exsting options except "All"
-    //dropdown.innerHTML = '<option value="All">All</option>';
+  
+    // Clear existing options except "All"
+    dropdown.innerHTML = '<option value="All">All</option>';
+  
     categories.forEach(cat => {
-        const option = document.createElement("option");
-        option.value = cat;
-        option.textContent = cat;
-        console.log(option);
-        dropdown.appendChild(option);
+      const option = document.createElement("option");
+      option.value = cat;
+      option.textContent = cat;
+      dropdown.appendChild(option);
     });
   }
+  
   //Hookup the Filter Behavior
   document.getElementById("category-filter").addEventListener("change", e => {
     renderTodos(e.target.value);
