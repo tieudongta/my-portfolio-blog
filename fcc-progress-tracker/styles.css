@@ -109,4 +109,90 @@ body {
     font-style: italic;
     text-align: right;
   }
+  .form-card {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    margin-top: 1rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    max-width: 500px;
+  }
   
+  .form-card h3 {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  .form-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 0.4rem;
+    font-weight: bold;
+    color: #444;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  button#add-task-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  
+  button#add-task-btn:hover {
+    background-color: #45a049;
+  }
+  .todo-due.overdue {
+    color: #e74c3c; /* red */
+  }
+  
+  .todo-due.due-today {
+    color: #f39c12; /* orange */
+  }
+  
+  .todo-due.upcoming {
+    color: #2ecc71; /* green */
+  }
+  .todo-actions {
+    margin-top: 0.5rem;
+  }
+  
+  .delete-btn {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background-color: #c0392b;
+  }
+  .edit-btn {
+    background-color: #096e1f;
+    color: white;
+    border: none;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .edit-btn:hover {
+    background-color: #3cae55;
+  }
