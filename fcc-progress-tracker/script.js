@@ -188,22 +188,22 @@ document.getElementById("toggleChart").addEventListener("click", () => {
         }else{
             dueClass = "upcomming";
         }
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.checked = todo.completed;
-        checkbox.addEventListener("change", () => {
-        todo.completed = checkbox.checked;
-        saveTodoData();          // Save to localStorage
-        updateTodoList();        // Re-render UI
-        updateCategoryStatus();  // Update certification progress
-        });
+        // const checkbox = document.createElement("input");
+        // checkbox.type = "checkbox";
+        // checkbox.checked = todo.completed;
+        // checkbox.addEventListener("change", () => {
+        // todo.completed = checkbox.checked;
+        // saveTodoData();          // Save to localStorage
+        // updateTodoList();        // Re-render UI
+        // updateCategoryStatus();  // Update certification progress
+        // });
         //li.appendChild(checkbox);
         li.innerHTML = `
             <div class="todo-category"><strong>${todo.category}</strong></div>
             <div class="todo-text">${todo.text}</div>
             <div class="todo-due ${dueClass}">Due: ${todo.due}</div>
             <div class="todo-actions">
-                <input type="checkbox" onchange="updateStatus(this, ${index})">
+                <input type="checkbox" ${todo.completed ? "checked" : ""} onchange="updateStatus(this, ${index})">
                 <button class="edit-btn" data-index="${index}">✏️ Edit</button>
                 <button class="delete-btn" data-index="${index}">🗑 Delete</button>
             </div>
