@@ -234,6 +234,6 @@ document.getElementById("toggleChart").addEventListener("click", () => {
   
   //call it on page load
   window.addEventListener("DOMContentLoaded", function () {
-    populateFilterDropdown();
+    populateCategoryDropdowns();
     renderTodos();
   });
