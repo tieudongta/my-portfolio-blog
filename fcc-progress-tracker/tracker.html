@@ -43,7 +43,22 @@
             <select id="category-filter">
                 <option value="All">All</option>
             </select>
-
+            <div id="todo-form">
+                <h3>Add New Task</h3>
+                <label for="task-category">Category:</label>
+                <select id="task-category">
+                  <!-- Populated dynamically like the filter -->
+                </select>
+              
+                <label for="task-text">Task Description:</label>
+                <input type="text" id="task-text" placeholder="e.g. Build hero section" />
+              
+                <label for="task-due">Due Date:</label>
+                <input type="date" id="task-due" />
+              
+                <button id="add-task-btn">Add Task</button>
+              </div>
+              
             <ul id="todo-list">
 
             </ul>

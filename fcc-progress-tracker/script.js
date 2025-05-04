@@ -171,25 +171,59 @@ document.getElementById("toggleChart").addEventListener("click", () => {
         list.appendChild(li);
     })
   }
-  function populateFilterDropdown() {
-    const dropdown = document.getElementById("category-filter");
-    const categories = [...new Set(todoData.map(todo => todo.category))];
+  function populateCategoryDropdowns() {
+    const uniqueCategories = [...new Set(todoData.map(todo => todo.category))];
   
-    // Clear existing options except "All"
-    dropdown.innerHTML = '<option value="All">All</option>';
+    const filterDropdown = document.getElementById("category-filter");
+    const taskDropdown = document.getElementById("task-category");
   
-    categories.forEach(cat => {
-      const option = document.createElement("option");
-      option.value = cat;
-      option.textContent = cat;
-      dropdown.appendChild(option);
+    filterDropdown.innerHTML = '<option value="All">All</option>';
+    taskDropdown.innerHTML = "";
+  
+    uniqueCategories.forEach(cat => {
+      const option1 = document.createElement("option");
+      option1.value = cat;
+      option1.textContent = cat;
+      filterDropdown.appendChild(option1);
+  
+      const option2 = document.createElement("option");
+      option2.value = cat;
+      option2.textContent = cat;
+      taskDropdown.appendChild(option2);
     });
   }
+  
   
   //Hookup the Filter Behavior
   document.getElementById("category-filter").addEventListener("change", e => {
     renderTodos(e.target.value);
   });
+  //task creation
+  document.getElementById("add-task-btn").addEventListener("click", () => {
+    const category = document.getElementById("task-category").value;
+    const text = document.getElementById("task-text").value;
+    const due = document.getElementById("task-due").value;
+  
+    if (!category || !text || !due) {
+      alert("Please fill in all fields.");
+      return;
+    }
+  
+    todoData.push({
+      category,
+      text,
+      due,
+      completed: false
+    });
+  
+    // Clear inputs
+    document.getElementById("task-text").value = "";
+    document.getElementById("task-due").value = "";
+  
+    populateCategoryDropdowns();
+    renderTodos(document.getElementById("category-filter").value);
+  });
+  
   //call it on page load
   window.addEventListener("DOMContentLoaded", function () {
     populateFilterDropdown();
