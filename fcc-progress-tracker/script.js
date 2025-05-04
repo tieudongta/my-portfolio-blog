@@ -133,14 +133,18 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     renderChart(progressData);
   });
   //Todo list
-  function renderTodos(){
+  function renderTodos(filter = "All"){
     const list = document.getElementById("todo-list");
     list.innerHTML = ""; // Clear previous list
+    //Filter tasks if needed
+    const filteredTodos = filter === "All"
+        ? todoData
+        : todoData.filter(todo => todo.category === filter);
     const sampleTodos = [
         { category: "Personal Portfolio", text: "Build About section", due: "2025-05-03", status: false },
         { category: "Product landing", text: "Create hero layout", due: "2025-05-04", status: true }
     ];
-    sampleTodos.forEach(todo =>{
+    filteredTodos.forEach(todo =>{
         const li = document.createElement("li");
 
         li.className = `todo-item ${todo.status ? "completed" : ""}`;
@@ -152,5 +156,22 @@ document.getElementById("toggleChart").addEventListener("click", () => {
         list.appendChild(li);
     })
   }
+  function populateFilterDropdown(){
+    const dropdown = document.getElementById("category-fileter");
+    const categories = [...new Set(todoData.map(todo => todo.category))];
+    //Clear exsting options except "All"
+    dropdown.innerHTML = '<option value="All">All</option>';
+    categories.forEach(cat => {
+        const option = document.createElement("option");
+        option.value = cat;
+        option.textContent = cat;
+        dropdown.appendChild(option);
+    });
+  }
+  //Hookup the Filter Behavior
+  document.getElementById("category-filter").addEventListener("change", e => {
+    renderTodos(e.target.value);
+  });
   //call it on page load
+  populateFilterDropdown();
   renderTodos();
