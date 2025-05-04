@@ -189,5 +189,7 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     renderTodos(e.target.value);
   });
   //call it on page load
-  populateFilterDropdown();
-  renderTodos();
+  window.addEventListener("DOMContentLoaded", function () {
+    populateFilterDropdown();
+    renderTodos();
+  });
