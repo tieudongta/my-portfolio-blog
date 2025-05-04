@@ -196,3 +196,21 @@ body {
   .edit-btn:hover {
     background-color: #3cae55;
   }
+  #todo-list li {
+    border-left: 4px solid #007bff; /* blue by default */
+    padding: 0.5em;
+    margin-bottom: 0.5em;
+    list-style: none;
+    background-color: #f9f9f9;
+    transition: border-left-color 0.3s;
+  }
+  #todo-list li.completed {
+    border-left-color: darkgreen;
+    color: #444;
+    background-color: #e7f4e7;
+  }  
+  #todo-list li.completed .todo-text{
+    text-decoration: line-through;
+    color: #9b8f8f;
+    background-color: #e7f4e7;
+  }  

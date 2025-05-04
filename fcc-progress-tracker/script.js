@@ -58,6 +58,28 @@ function loadFromLocal() {
   const progress = localData || remoteData;
   renderProgress(progress);
 })();
+//Update Certification Status
+function updateCategoryStatus() {
+    const progressData = loadFromLocal();
+    if (!progressData) return;
+  
+    progressData.forEach(cert => {
+      const tasks = todoData.filter(task => task.category === cert.title);
+      if (tasks.length === 0) {
+        cert.status = "Pending";
+      } else if (tasks.every(t => t.completed)) {
+        cert.status = "Completed";
+      } else if (tasks.some(t => t.completed)) {
+        cert.status = "Ongoing";
+      } else {
+        cert.status = "Pending";
+      }
+    });
+  
+    saveToLocal(progressData);
+    renderProgress(progressData); // re-render certification cards
+  }
+  
 //Chart functions
 //Toggle chart type
 let currentChartType = "bar"; //Default
@@ -151,8 +173,10 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     
     filteredTodos.forEach((todo, index) =>{
         const li = document.createElement("li");
-
         li.className = `todo-item ${todo.status ? "completed" : ""}`;
+        if (todo.completed) {
+            li.classList.add("completed");
+          }
         const dueDate = new Date(todo.due);
         const today = new Date();
         today.setHours(0,0,0,0); //normalize to midnight
@@ -173,7 +197,7 @@ document.getElementById("toggleChart").addEventListener("click", () => {
         updateTodoList();        // Re-render UI
         updateCategoryStatus();  // Update certification progress
         });
-        li.appendChild(checkbox);
+        //li.appendChild(checkbox);
         li.innerHTML = `
             <div class="todo-category"><strong>${todo.category}</strong></div>
             <div class="todo-text">${todo.text}</div>
@@ -190,8 +214,6 @@ document.getElementById("toggleChart").addEventListener("click", () => {
   function updateStatus(checkbox, taskIndex) {
     //const taskIndex = checkbox.dataset.index; // if you store index
     todoData[taskIndex].completed = checkbox.checked;
-    console.log(todoData[taskIndex]);
-    console.log(todoData);
     saveTodos();
     renderTodos();
     updateCategoryStatus();
@@ -226,27 +248,27 @@ document.getElementById("toggleChart").addEventListener("click", () => {
   }
   
   //function update certification status
-  function updateCategoryStatus() {
-    const cards = document.querySelectorAll('#tracker .card');
+//   function updateCategoryStatus() {
+//     const cards = document.querySelectorAll('#tracker .card');
   
-    cards.forEach(card => {
-      const category = card.querySelector('h3').innerText;
-      const statusEl = card.querySelector('.status');
+//     cards.forEach(card => {
+//       const category = card.querySelector('h3').innerText;
+//       const statusEl = card.querySelector('.status');
   
-      const tasksInCategory = todoData.filter(task => task.category === category);
+//       const tasksInCategory = todoData.filter(task => task.category === category);
   
-      if (tasksInCategory.length === 0) {
-        statusEl.textContent = "Pending";
-        statusEl.className = "status Pending";
-      } else if (tasksInCategory.every(task => task.completed)) {
-        statusEl.textContent = "Completed";
-        statusEl.className = "status Completed";
-      } else {
-        statusEl.textContent = "Ongoing";
-        statusEl.className = "status Ongoing";
-      }
-    });
-  }
+//       if (tasksInCategory.length === 0) {
+//         statusEl.textContent = "Pending";
+//         statusEl.className = "status Pending";
+//       } else if (tasksInCategory.every(task => task.completed)) {
+//         statusEl.textContent = "Completed";
+//         statusEl.className = "status Completed";
+//       } else {
+//         statusEl.textContent = "Ongoing";
+//         statusEl.className = "status Ongoing";
+//       }
+//     });
+//   }
   
   //Hookup the Filter Behavior
   document.getElementById("category-filter").addEventListener("change", e => {
