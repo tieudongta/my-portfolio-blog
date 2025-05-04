@@ -172,15 +172,23 @@ document.getElementById("toggleChart").addEventListener("click", () => {
     })
   }
   function populateCategoryDropdowns() {
-    const uniqueCategories = [...new Set(todoData.map(todo => todo.category))];
+    const cards = document.querySelectorAll("#tracker .card h3");
+    const categories = new Set();
+  
+    cards.forEach(card => {
+      categories.add(card.textContent.trim());
+    });
   
     const filterDropdown = document.getElementById("category-filter");
     const taskDropdown = document.getElementById("task-category");
   
-    filterDropdown.innerHTML = '<option value="All">All</option>';
-    taskDropdown.innerHTML = "";
+    if (!filterDropdown || !taskDropdown) return;
   
-    uniqueCategories.forEach(cat => {
+    // Reset dropdowns
+    filterDropdown.innerHTML = '<option value="All">All</option>';
+    taskDropdown.innerHTML = '';
+  
+    categories.forEach(cat => {
       const option1 = document.createElement("option");
       option1.value = cat;
       option1.textContent = cat;
