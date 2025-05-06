@@ -29,5 +29,6 @@ window.onload = function () {
     document.getElementById("post-date").textContent = `Posted on ${formattedDate}`;
     document.getElementById("post-description").innerHTML = marked.parse(post.description);
     document.getElementById("post-content").innerHTML = marked.parse(post.content);
+    //document.getElementById("post-final").textContent = '${post.finalThoughts}';
   };
   
