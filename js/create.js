@@ -22,10 +22,10 @@ function login() {
     const finalThoughts = `
   ## Final Thoughts
   
-  
-  
   ${final}
+  
   **Every line of code is a step toward mastery.**
+  
   Thanks for reading. Good luck, and enjoy the journey!
   
   👉[Click here](./blog.html) to go back to the blogs page.
