@@ -218,3 +218,26 @@ body {
     color: #9b8f8f;
     background-color: #e7f4e7;
   }  
+  #post-content h2, #post-content h3 {
+    margin-top: 20px;
+    color: #333;
+  }
+  
+  #post-content p {
+    line-height: 1.6;
+    margin: 10px 0;
+  }
+  
+  #post-content pre {
+    background: #f4f4f4;
+    padding: 10px;
+    overflow-x: auto;
+    border-radius: 4px;
+  }
+  
+  #post-content code {
+    background-color: #eee;
+    padding: 2px 4px;
+    border-radius: 3px;
+  }
+  

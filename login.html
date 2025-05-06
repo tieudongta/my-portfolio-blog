@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Login</h1>
+    <form id="login-form">
+      <input type="password" id="password" placeholder="Enter password" required />
+      <button type="submit">Login</button>
+    </form>
+    <p id="login-status" style="color: red;"></p>
+  </div>
+
+  <script>
+    document.getElementById('login-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const password = document.getElementById('password').value;
+
+      // Replace 'your-password' with your chosen password
+      if (password === 'letmein') {
+        localStorage.setItem('loggedIn', 'true');
+        window.location.href = 'blog.html';
+      } else {
+        document.getElementById('login-status').textContent = 'Incorrect password.';
+      }
+    });
+  </script>
+</body>
+</html>

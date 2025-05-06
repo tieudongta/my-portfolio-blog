@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create a Post</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/create.css">
+</head>
+<body>
+    <div class="container">
+      <h1>Create a New Blog Post</h1>
+      <a class="button" href="blog.html">Cancel</a>
+      <!-- Authentication Section -->
+      <script>
+        if (localStorage.getItem('loggedIn') !== 'true') {
+          window.location.href = 'login.html';
+        }
+      </script>
+      
+  
+      <!-- Hidden Post Form -->
+      <div id="post-form" class="card">
+        <label>Title</label>
+        <input type="text" id="title" placeholder="Title">
+  
+        <label>Description</label>
+        <input type="text" id="desc" placeholder="Brief description">
+  
+        <label>Markdown Content</label>
+        <textarea id="content" placeholder="Write your post in Markdown..." rows="10" oninput="updatePreview()"></textarea>
+
+        <label>Preview</label>
+        <div id="preview" class="preview-box"></div>
+
+        <button onclick="savePost()">Save Post</button>
+      </div>
+    </div>
+    <p id="redirect-msg" style="color: #555;"></p>
+
+<script>
+  if (document.referrer.includes('create.html')) {
+    document.getElementById('redirect-msg').textContent =
+      'Please login to create a post.';
+  }
+</script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/create.js"></script>
+  </body>
+  
+  
+</html>
