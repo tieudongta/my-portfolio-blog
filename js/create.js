@@ -20,6 +20,7 @@ function login() {
   
     // Markdown-formatted Final Thoughts section
     const finalThoughts = `
+    ---
   ## Final Thoughts
   
   ${final}
@@ -29,6 +30,8 @@ function login() {
   Thanks for reading. Good luck, and enjoy the journey!
   
   👉[Click here](./blog.html) to go back to the blogs page.
+
+  
   `;
   
     // Combine content and final thoughts first
