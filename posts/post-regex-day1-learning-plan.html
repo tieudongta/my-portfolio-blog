@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RegEx learning">
+  <title>Day 1 RegEx learning plan - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Day 1 RegEx learning plan</h1>
+      <p class="tagline">We'll go through concepts, examples, and practice challenges.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>Day 1: <code>/abc/</code>, <code>^</code>, <code>$</code>, <code>\d</code>, <code>\w</code>, <code>*</code>, <code>+</code>, <code>{n,m}</code></h2>
+      <p class="date">Posted on May 18, 2025</p>
+
+      <p>We'll go through concepts, examples, and practice challenges for each.</p>
+      <ol>
+        <li>
+            <section>
+                <h3><code>/abc/</code> - Exact Match</h3>
+                <h4>Meaning:</h4>
+                <p>Matches the exact sequence <code>abc</code> in a string.</p>
+                <div class="code-block">
+                    <p>const str = "syzabc123";<br>const result = /abc/.test(str); //true</p>
+                </div>
+                <h4>Practice</h4>
+                <ul><li>Does <code>abc</code> exist in <code>"xyzabc"</code></li>
+                <li>Find <code>"dog"</code> in <code>"hotdog"</code></li></ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>^</code>-Start of String</h3>
+                <h4>Meaning</h4>
+                <p>Matches if the pattern starts at the beginning of the string.</p>
+                <div class="code-block">
+                    <p>
+                        /^Hello/.test("Hello world");// true <br>
+                        /^Hello/.test("Say Hello"); //false
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Check if s string starts with <code>"cat"</code>.
+                    </li>
+                    <li>
+                        Match usernames that start with a letter: <code>/^[a-zA-Z]/</code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>$</code> - End of String</h3>
+                <h4>Meaning</h4>
+                <p>Matches if the pattern ends at the end of the string.</p>
+                <div class="code-block"><p>
+                    /world$/.test("Hello world"); // true<br>
+                    /world$/.test("world peace"); // false
+                </p></div>
+                
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>\d</code> - Digit</h3>
+                <h4>Meaning:</h4>
+                <p>Matches any digit (0-9)</p>
+                <div class="code-block"><p>
+                    /\d/.test("abc3def");//true
+                </p></div>
+                <div class="code-block"><p>
+                    "Price: 123".match(/\d+/g); //{'123'}
+                </p></div>
+                <h4>Practice:</h4>
+                <ul>
+                    <li>Match 4-digit years: <code>/\d{4}/</code></li>
+                    <li>Match 2-digit numbers</li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <h3><code>\w</code> - Word Character</h3>
+            <h4>Meaning:</h4>
+            <p>Matches any letter, digit, or underscore <code>[a-zA-Z0-9_]</code></p>
+            <div class="code-block">
+                <p>
+                    /\w/.test("_"); // true<br>
+                    /\w/.test("-"); // false
+                </p>
+                <p>
+                    "This_is_good".match(/\w+/g); // ["This_is_good"]
+                </p>
+            </div>
+            <h4>Practice</h4>
+            <ul>
+                <li>
+                    Match usernames: <code>/^\w+$/</code>
+                </li>
+                <li>
+                    Match a variable name like <code>my_var1</code>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h3><code>*</code> - 0 or More</h3>
+            <h4>Meaning</h4>
+            <p>Matches 0 or more of the preceding character</p>
+            <div class="code-block">
+                <p>
+                    /a*/.test(""); //true<br>
+                    "a".match(/a*/); //['a']<br>
+                    "aaab".match(/a*/); // ['aaa']
+                </p>
+            </div>
+            <h4>Practice</h4>
+            <ul>
+                <li>Match <code>"ha"</code> repeated any number of times: <code>/ha*/</code></li>
+                <li>Match an optional "s": <code>/cat(s)*/</code></li>
+            </ul>
+        </li>
+        <li>
+            <section>
+                <h3><code>+</code> - 1 or More</h3>
+                <h4>Meaning</h4>
+                <p>Matches at least one of the preceding character</p>
+                <div class="code-block">
+                    <p>
+                        /a+/.test(""); // false <br>
+                        "aaa".match(/a+/); // ['aaa']
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match one or more digits: <code>/\d+/</code>
+                    </li>
+                    <li>Match one or more word characters: <code>/\w+/</code></li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+               <h3><code>{n,m}</code> - Repetition Quantifier</h3> 
+               <h4>Meaning:</h4>
+               <p>Matches between n and m repetitions of the preceding pattern</p>
+               <div class="code-block">
+                <p>
+                    /\d{2,4}.test("199"); // true (3 digits) <br>
+                    "12345".match(/\d{2,4}/); // ['1234']
+                </p>
+               </div>
+               <h4>Practice</h4>
+               <ul>
+                <li>
+                    Match 5-digit zip codes: <code>/\d{5}/</code>
+                </li>
+                <li>
+                    Match words with 3-6 characters: <code>/\w{3,6}/</code>
+                </li>
+               </ul>
+            </section>
+        </li>
+      </ol>
+    <h2>Summary Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Pattern
+                </th>
+                <th>
+                    Meaning
+                </th>
+                <th>
+                    Example Match
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <code>/abc/</code>
+                </td>
+                <td>
+                    exact string
+                </td>
+                <td>
+                    <code>
+                        "abc"
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>^</code>
+                </td>
+                <td>
+                    start of string
+                </td>
+                <td>
+                    <code>"^Hi"</code> matches <code>"Hi there"</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>$</code>
+                </td>
+                <td>
+                    end of string
+                </td>
+                <td>
+                    <code>"Bye$</code> matches <code>"Say Bye"</code>
+                </td>
+            </tr>
+            <tr>
+                <td><code>\d</code></td>
+                <td>
+                    digit
+                </td>
+                <td>
+                    <code>"4"</code>, <code>"123"</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>\w</code>
+                </td>
+                <td>
+                    word character
+                </td>
+                <td>
+                    <code>"a"</code>, <code>"Z"</code>, <code>"9"</code>, <code>"_"</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>*</code>
+                </td>
+                <td>
+                    0 or more
+                </td>
+                <td>
+                    <code>"aaa"</code>
+                    ,<code>""</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>+</code>
+                </td>
+                <td>
+                    1 or more
+                </td>
+                <td>
+                    <code>"a"</code>, <code>"aa"</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>
+                        {n,m}
+                    </code>
+                </td>
+                <td>
+                    between n and m times
+                </td>
+                <td>
+                    <code>"abc</code> if <code>n=1</code>, <code>m=3</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+	<h3>Practice Challenges</h3>
+    <ol>
+        <li><b>Match phone numbers like <code>123-4567</code></b>
+            <div class="code-block">
+                <p>
+                    /^\d{3}-\d{4}$/
+                </p>
+            </div>
+        </li>
+        <li>
+            <b>Validate a 4-digit PIN</b>
+            <div class="code-block">
+                <p>
+                    \^/d{4}$\
+                </p>
+            </div>
+        </li>
+        <li>
+            <b>Match lowercase letters only</b>
+            <div class="code-block">
+                <p>
+                    /^[a-z]+$/
+                </p>
+            </div>
+        </li>
+        <li>
+            <b>Match an email-like pattern</b>
+            <div class="code-block">
+                <p>
+                    /^\w+@\w+.\w{2,3}$/
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2>Real World Challenge</h2>
+    <p>You've been given a block of unstructured user data. Your task is to:</p>
+    <ol>
+        <li>Extract valid email address</li>
+        <li>Find valid 4-digit PINs</li>
+        <li>Check if names start with a capital letter</li>
+        <li>Match any line that ends with a period</li>
+        <li>Find phone numbers in 123-456 format</li>
+    </ol>
+    <h3>Input (Exmaple Data).</h3>
+    <div class="code-block">
+        <p>
+            const text = ` <br>
+John Smith<br>
+Email: john_smith23@gmail.com<br>
+PIN: 1234<br>
+Phone: 123-456<br>
+<br>
+Invalid:<br>
+- Email: not-an-email@wrong<br>
+- PIN: 12<br>
+- Name: alice brown<br>
+- Phone: 1234-5678<br>
+<br>
+Jane Doe<br>
+Email: jane.doe@example.com<br>
+PIN: 9876<br>
+Phone: 999-999.<br>
+`;
+        </p>
+    </div>
+    <h3>Your Tasks</h3>
+    <ol>
+        <li>
+            <b>Extract all valid email address</b>
+            <p>Must contain only word characters before <code>@</code>, then a domain and extension of 2-3 letters</p>
+            <button onclick="document.getElementById('task-1').style.display = 'block'">Answer:</button><span id="task-1" style="display:none">
+                <code>
+                /\b\w+[\w.]*@\w+\.\w{2,3}\b/g
+            </code>
+            </span>
+            
+        </li>
+        <li>
+            <b>Extract all 4-digit PINs</b>
+            <button onclick="document.getElementById('task-2').style.display = 'block'">Answer:</button>
+            <span id="task-2" style="display: none">
+                <code>
+                    /\b\d{4}\b/g
+                </code>
+            </span>
+        </li>
+        <li>
+            <b>Find lines where the name starts with a capital letter</b>
+            <button onclick="document.getElementById('task-3').style.display = 'block'">Answer:</button>
+            <span id="task-3" style="display: none;">
+                <code>
+                    /^[A-Z][a-z]+[A-Z][a-z]+/gm
+                </code>
+            </span>
+        </li>
+        <li>
+            <b>Find lines that end with a period</b>
+            <button onclick="document.getElementById('task-4').style.display = 'block'">Answer:</button>
+            <span id="task-4" style="display:none;">
+                <code>
+                    /^.*\.$/gm
+                </code>
+            </span>
+        </li>
+        <li>
+            <b>
+                Extract all valid phone numbers in <code>123-456</code> format.
+            </b>
+            <button onclick="document.getElementById('task-5').style.display = 'block'">Answer:</button>
+            <span id="task-5" style="display: none;">
+                <code>
+                    /\b\d{3}-\d{3}\b/g
+                </code>
+            </span>
+        </li>
+    </ol>
+    <h2>Final thought</h2>
+    <p>For day 2 on Regex, click <a href="post-regex-day2-learning-plan.html">Here</a>. </p>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>

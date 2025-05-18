@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Callback learning">
+  <title>Day 1 CallBack Challenge Workbook - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Day 1 Callback Challenge Workbook</h1>
+      <p class="tagline">We'll go through <code>forEach()</code>, <code>map()</code> by examples and real world tasks.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>Day 1: Callback Challenge Workbook</h2>
+      <p class="date">Posted on May 18, 2025</p>
+
+      <p>Our day 1 focused on:</p>
+      <ul>
+        <li>
+            <code>forEach()</code> - for printing/logging
+        </li>
+        <li>
+            <code>map()</code>
+            - for transforming
+        </li>
+        <li>
+            Practice: convert to uppercase, appending strings, reformat data
+        </li>
+      </ul>
+      <h3>Goal</h3>
+      <p>Understand how to use <code>forEach()</code> to <b>loop and print</b>, and how to use <code>map()</code> to <b>transform data</b> without modifying the original array.</p>
+      <ol>
+        <li>
+            <section>
+                <h3>Warm-Up: Names List</h3>
+                <div class="code-block">
+                    <p>
+                        const names = ["alice", "bob", "charlie", "diana"];
+                    </p>
+                </div>
+                <h4>Task 1A: Print each name with <code>forEach()</code></h4>
+                <div class="code-block">
+                    <p>
+                        //Output: <br>
+                        //Name: alice<br>
+                        //Name: bob<br>
+                        //...
+                    </p>
+                </div>
+                <button onclick="document.getElementById('task-1a').style.display = 'block'">Answer:</button>
+                <div class="code-block" id="task-1a" style="display: none">
+                    <p class="answer">
+                        names.forEach(name => {console.log("Name:", name)});
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Uppercase with <code>map()</code></h3>
+                <h4>Task 2A: Create a new array of uppercase names</h4>
+                <div class="code-block">
+                    <p>
+                        //Output: ["ALICE", "BOB", "CHARLIE", "DIANA"]
+                    </p>
+                </div>
+                <button onclick="document.getElementById('task-2a').style.display='block'">Answer</button>
+                <div id="task-2a" class="code-block" style="display: none">
+                    <p class="answer">
+                        const upperNames = names.map(name => name.toUpperCase());<br>
+                        console.log(upperNames);
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Add Prefix or Suffix with <code>map()</code></h3>
+                <div class="code-block">
+                    <p>const animals = ["cat", "dog", "tiger"];</p>
+                </div>
+                <h4>Task3A: Add "Animal: " before each name</h4>
+                <div class="code-block">
+                    <p>
+                        //Output: ["Animal: cat", "Animal: dog", "Animal: tiger"]
+                    </p>
+                </div>
+                <button onclick="document.getElementById('task-3a').style.display='block'">
+                    Answer
+                </button>
+                <div id="task-3a" class="code-block" style="display: none">
+                    <p class="answer">
+                        const modified = animals.map(animal => "Animal: "+animal);<br>
+                        console.log(modified);
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Numbers: Square & Format</h3>
+                <div class="code-block">
+                    <p>
+                        const numbers = [2,4,6,8];
+                    </p>
+                </div>
+                <h4>Task 4A: Print each number with a message</h4>
+                <div class="code-block">
+                    <p>
+                        // Output: <br>
+                        // The number is 2<br>
+                        // ...
+                    </p>
+                </div>
+                <button onclick="document.getElementById('task-4a').style.display = 'block'">Answer</button>
+                <div id="task-4a" class="code-block" style="display: none">
+                    <p class="answer">
+                        const modified = numbers.map(number => "The number is " + number);<br>
+                        console.log(modified);
+                    </p>
+                </div>
+                <h4>Task 4B: Create array of squares:</h4>
+                <div class="code-block">
+                    <p>
+                        //Output: [4, 16, 36, 64]
+                    </p>
+                </div>
+                <button onclick="document.getElementById('task-4b').style.display = 'block'">Answer</button>
+                <div id="task-4b" class="code-block" style="display: none">
+                    <p class="answer">
+                        const squares = numbers.map(number => number * number); <br>
+                        console.log(squares);
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Real-World Formatting Example</h3>
+                <div class="code-block">
+                    <p>
+                        const users = [<br>
+                        { first: "john", last: "doe" },<br>
+  { first: "jane", last: "smith" }<br>
+  ];
+                    </p>
+                </div>
+                <h4>Task 5A: Print full names</h4>
+                <div class="code-block">
+                    <p>
+                        // Output<br>
+                        // john doe<br>
+                        // jane<br>
+                        // smith<br>
+                    </p>
+                </div>
+                <button onclick="document.getElementById('task-5a').style.display = 'block'">Answer</button>
+                <div id="task-5a" class="code-block" style="display: none;">
+                    <p class="answer">
+                        users.forEach(user =>{<br>
+                            console.log(`${user.first} ${user.last}`);<br>
+                        });<br>
+                    </p>
+                </div>
+                <h4>Task 5B: Return capitalized full names</h4>
+                <div class="code-block">
+                    <p>
+                        // Output <br>
+                        // ["John Doe", "Jane Smith"]
+                    </p>
+                </div>
+                <button onclick="document.getElementById('task-5b').style.display = 'block'">Answer</button>
+                <div id="task-5b" class="code-block" style="display: none;">
+                    <p class="answer">
+                        const fullNames = users.map(user => {<br>
+                            const cap = str => str[0].toUpperCase() + str.slice(1);<br>
+                            return `${cap(user.first)} ${cap(user.last)}`;<br>
+                        });
+                    </p>
+                </div>
+            </section>
+        </li>
+    </ol>
+    <h2>Bonus Challenge</h2>
+    <div class="code-block">
+        <p>
+            const products = [<br>
+  { name: "pen", price: 1.2 },<br>
+  { name: "notebook", price: 2.5 },<br>
+  { name: "pencil", price: 0.5 }<br>
+];
+        </p>
+    </div>
+    <h4>Tasks:</h4>
+    <ol>
+        <li>Print: <code>"pen: $1.20"</code>
+        <div class="code-block">
+            <p>
+                // Output: <br>
+                // "pen: $1.20"<br>
+                // "notebook: $2.50"<br>
+                // ...
+            </p>
+        </div>
+        <button onclick="document.getElementById('bonus-1').style.display='block'">Answer</button>
+        <div id="bonus-1" class="code-block" style="display: none;">
+            <p class="answer">
+                products.forEach(p =>{<br>
+                console.log(p.name + ": $"+ p.price);<br>});
+            </p>
+        </div>
+    </li>
+        <li>
+            Map to: <code>"Notebook = $2.50"</code> (Capitalized + formatted)
+            <div class="code-block">
+                <p>
+                    // Output <br>
+                    // ["Pen: $1.20", <br>  // "Notebook: $2.50",<br> // "Pencil: $0.50"]
+                </p>
+            </div>
+            <button onclick="document.getElementById('bonus-2').style.display = 'block'">Answer</button>
+            <div class="code-block" id="bonus-2" style="display: none;">
+                <p class="answer">
+                      const print = products.map(p => {<br>
+    const cap = str => str[0].toUpperCase()+str.slice(1);<br>
+    return `${cap(p.name)}: $${p.price.toFixed(2)}`;<br>
+});<br>
+
+console.log(print);
+                </p>
+            </div>
+        </li>
+    </ol>
+
+    <h2>Final thought</h2>
+    <p>For day 2 on Callback, click <a href="post-callback-day2-learning-plan.html">Here</a>. </p>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+</body>
+</html>

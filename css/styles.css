@@ -240,3 +240,16 @@ table {
 	object-fit: cover;
 	display: block;
   }
+  .code-block p {
+  font-family: monospace;
+  background-color: #f4f4f4;
+  padding: 10px;
+  border-left: 3px solid #ccc;
+  /* white-space: pre; */
+}
+.code-block .answer{
+	background-color: rgba(192, 227, 249, 0.594);
+}
+code{
+	background-color: #bebebe77;
+}
