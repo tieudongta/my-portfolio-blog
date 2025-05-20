@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RegEx learning">
+  <title>Mastering Regular Expressions - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>My Blog</h1>
+      <p class="tagline">Let's learn and grow together.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>Mastering Regular Expressions: A Practical Journey</h2>
+      <p class="date">Posted on May 25, 2025</p>
+
+      <p>Regular Expressions (regex) are a powerful tool for working with text, enabling pattern matching, validation, and extraction. Whether you're validating user input, scraping data, or parsing logs, regex is an essential skill for every developer.
+
+In this post, I'll walk you through a structured 5-day regex learning path I followed—starting from basics to advanced concepts, each reinforced with hands-on practice. We'll wrap it up with a real-world “boss level” mini project that ties everything together.</p>
+      <ol style="list-style-type: none;">
+        <li>
+            <section>
+                <h3>
+                    <a href="post-regex-day1-learning-plan.html">Day 1: The Basics</a>
+                </h3>
+                <ul>
+                    <li>
+                        Exact matches: <code>/abc/</code>
+                    </li>
+                    <li>
+                        Anchors: <code>^</code> (start), <code>$</code> (end)
+                    </li>
+                    <li>
+                        Character classes: <code>\d</code> (digit), <code>\w</code> (word)
+
+
+                    </li>
+                    <li>
+                        Quantifiers: <code>*</code> (0 or more), <code>+</code> (1 or more), <code>{n,m}</code> (range)
+                    </li>
+                </ul>
+                <h4>Practice</h4>
+                <ul>
+                    <li>Match zip codes, usernames, and emails.</li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><a href="post-regex-day2-learning-plan.html">Day 2: Grouping & Alternation</a></h3>
+                <ul>
+                    <li><b>Groups</b>: <code>()</code> for capturing submatches</li>
+                    <li><b>Alternation</b>: <code>|</code> to match one of many patterns</li>
+                    <li><b>Non-capturing groups</b>: <code>(?:...)</code></li>
+                </ul>
+                <h4>Practice</h4>
+                <ul>
+                    <li>Match phone numbers with or without area codes.</li>
+                    <li>Extract first and last names from full names.</li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><a href="post-regex-day3-learning-plan.html">Day 3: Character Sets and Negation</a></h3>
+                <ul>
+                    <li><b>Sets</b>: <code>[aeiou]</code> to match vowels</li>
+                    <li><b>Ranges</b>: <code>[a-z]</code>, <code>[0-9]</code></li>
+                    <li>
+                        <b>Negation</b>: <code>[^aeiou]</code> matches non-vowels
+                    </li>
+                </ul>
+                <h4>Practice</h4>
+                <ul>
+                    <li>Match all uppercase letters</li>
+                    <li>Match all non-digit characters</li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><a href="post-regex-day4-learning-plan.html">Day 4: Special Characters and Escaping</a></h3>
+                <ul>
+                    <li>Escape sequences: <code>\\</code>, <code>\\.</code>, <code>\\*</code></li>               <li>
+                    Special sequences: <code>\\b</code> (word boundary), <code>\\s</code> (space), <code>\\S</code> (non-space)
+                </li>
+                </ul>
+                <h4>Practice</h4>
+                <ul>
+                    <li>Match file extensions like <code>.jpg</code>, <code>.png</code></li>
+                    <li>Detect punctuation</li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><a href="post-regex-day5-learning-plan.html">Day 5: Assertions</a></h3>
+                <ul>
+                    <li><b>Lookaheads</b>: <code>(?=...)</code>, <code>(?!...)</code></li>
+                    <li><b>Lookbehinds</b>: <code>(?=&lt;...)</code>, <code>(?&lt;!...)</code></li>
+                    <li>
+                        <b>Named groups</b>: <code>(?<name>...)</code>
+                    </li>
+                    <li><b>Backreferences</b>: <code>\\1</code>, <code>\\k<name></name></code></li>
+                </ul>
+                <h4>Practice</h4>
+                <ul>
+                    <li>Match prices only when followed by “USD”</li>
+                    <li>Find usernames not preceded by “@”</li>
+                    <li>Match repeated words</li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><a href="post-regex-boss-level-challenge.html">Final Boss-Level Project</a></h3>
+                <p>To solidify all this knowledge, I built a resume parser using only vanilla JavaScript and regex.</p>
+                <h4>Features</h4>
+                <ul>
+                    <li>
+                       Paste raw resume text 
+                    </li>
+                    <li>
+                        Extracts:
+                        <ul>
+                            <li>
+                                Name
+                            </li>
+                            <li>
+                                Email
+                            </li>
+                            <li>
+                                Phone (123-4567 format)
+
+
+                            </li>
+                            <li>
+                                DOB (YYYY-MM-DD)
+                            </li>
+                            <li>
+                                GitHub & LinkedIn URLs
+                            </li>
+                            <li>
+                                Skill list (comma-separated)
+
+
+                            </li>
+                            
+                            
+                        </ul>
+                    </li>
+                    <li>
+                        Displays parsed data in JSON format
+                    </li>
+                </ul>
+                <h4>Regex Highlights Used</h4>
+                <ul>
+                    <li>Anchors (<code>^</code>, <code>$</code>)
+
+</li>
+<li>Word characters (<code>\\w</code>), digits (<code>\\d</code>)</li>
+<li>Quantifiers (<code>{3,}</code>, <code>+</code>, <code>*</code>)</li>
+<li>Lookaheads and optional groups</li>
+<li>Escaped characters and grouping
+</li>
+                </ul>
+            </section>
+        </li>
+      </ol>
+
+    <h2>Final thought</h2>
+    <p>Learning regex can feel like unlocking a superpower. Through this structured path, daily practice, and a real-world app, I went from beginner to confidently using regex in production. Click the above links for more info:</p>
+    <ul style="list-style-type: none; padding-left: 1rem;">
+        <li><a href="post-regex-day1-learning-plan.html">Day 1</a></li>
+        <li><a href="post-regex-day2-learning-plan.html">Day 2</a></li>
+        <li><a href="post-regex-day3-learning-plan.html">Day 3</a></li>
+        <li><a href="post-regex-day4-learning-plan.html">Day 4</a></li>
+        <li><a href="post-regex-day5-learning-plan.html">Day 5</a></li>
+        <li><a href="post-regex-boss-level-challenge.html">Boss Challenge</a></li>
+    </ul>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+  <script>
+    function show(str){
+        document.getElementById(str).style.display = "block";
+    }
+    function showAnswer(str) {
+    const index = str.slice(-1); // Get last character
+    const answerId = str.slice(0, -1); // Remove last character to get the element ID
+    const answerElement = document.getElementById(answerId);
+
+    if (!answerElement) return console.warn(`Element with ID '${answerId}' not found`);
+
+    answerElement.style.display = "block";
+
+    const questionId = answerId.replace('a', 'q');
+    const questionElement = document.getElementById(questionId);
+
+    if (!questionElement) return console.warn(`Element with ID '${questionId}' not found`);
+
+    const nthChild = questionElement.children[parseInt(index) - 1];
+
+    if (!nthChild) return console.warn(`Child #${index} not found in '${questionId}'`);
+
+    nthChild.style.backgroundColor = "lightgreen";
+}
+
+  </script>
+</body>
+</html>

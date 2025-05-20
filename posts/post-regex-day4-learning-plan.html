@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RegEx learning">
+  <title>Day 4 RegEx learning plan - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>My Blog</h1>
+      <p class="tagline">Let's learn and grow together.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>Day 4 - Groups, Alternation & Captures</h2>
+      <p class="date">Posted on May 21, 2025</p>
+
+      <p>Great job on completing Day 3 of your regex learning! Today's focus is on <b>Groups, Alternation, and Capture Groups</b>, continuing in the same clear and persistent format. Let's go!</p>
+      <ol>
+        <li>
+            <section>
+                <h3>
+                    <code>
+                        ()
+                    </code> - Grouping
+                </h3>
+                <h4>Meaning:</h4>
+                <p>
+                    Groups multiple tokens together - works like parantheses in math. Helpful for <b>repeating, capturing,</b> or <b>alternating</b> entire subpatterns.
+                </p>
+                <div class="code-block">
+                    <p>
+                        /(ha)+/.test("hahaha"); // true <br>
+                        "haha".match(/(ha)+/); // ['haha']
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match repeated "ha": <code>
+                            /(ha)+/
+                        </code>
+                    </li>
+                    <li>
+                        Match "hello" or "world": <code>
+                            /(hello|world)/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    <code>
+                        |
+                    </code>
+                     - Alternation
+                </h3>
+                <h4>Meaning:</h4>
+                <p>
+                    Acts like a logical <b>OR</b>. Matches <b>either</b> the expression on the left or right.
+                </p>
+                <div class="code-block">
+                    <p>
+                        /cat|dog/.test("hotdog"); // true <br>
+                        /yes|no/.test("maybe"); // false
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match "apple" or "banana": <code>/apple|banana</code>
+                    </li>
+                    <li>
+                        Match "Mr" or "Mrs": <code>/Mr|Mrs/</code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>()</code> - Capturing Groups</h3>
+                <h4>Meaning:</h4>
+                <p>
+                    Stores the matched subpattern inside parentheses for <b>retrieval</b> via <code>
+                        .match()
+                    </code>, <code>
+                        .replace()
+                    </code>,
+                    etc.
+                </p>
+                <div class="code-block">
+                    <p>
+                        const match = /(\d{4})-(\d{2})-(\d{2}).exec("2025-05-19");<br>
+                        //match[1] = "2025", match[2] = "05", match[3] = "19"
+                    </p>
+                </div>
+                <h4>Practice:</h4>
+                <ul>
+                    <li>
+                        Extract year, month, day from date: <code>
+                            /(\d{4})-(\d{2})-(\d{2})/
+                        </code>
+                    </li>
+                    <li>
+                        Capture area code from phone: <code>
+                            /\((\d{3}))\)/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>(?:)</code> - Non-Capturing Groups</h3>
+                <h4>Meaning:</h4>
+                <p>
+                    Groups tokens <b>without</b> saving the match in a capture group.
+                </p>
+                <div class="code-block">
+                    <p>
+                        /(?:ha)+/.exec("hahaha"); // ['hahaha'], no captured group
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match repeated "ha" without capturing: <code>
+                            /(?:ha)+/
+                        </code>
+                    </li>
+                    <li>
+                        Group "Mr" or "Mrs" but only capture name: <code>
+                            /(?:Mr|Mrs)\. (\w+)/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>\1, \2,</code> etc - Backreferences</h3>
+                <h4>Meaning</h4>
+                <p>
+                    Refers back to a previousl <b>captured group</b>. Useful for <b>repeated patterns</b> or symmetry.
+                </p>
+                <div class="code-block">
+                    <p>
+                        /(\w)\1/.test("book"); // true ('oo')
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match any <b>double letter.</b> <code>
+                            /(\w)\1/
+                        </code>
+                    </li>
+                    <li>
+                        Match <b>repeated word</b>: <code>
+                            /\b(\w+)\s+\1\b/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+      </ol>
+    <h2>Summary Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Pattern
+                </th>
+                <th>
+                    Meaning
+                </th>
+                <th>
+                    Example Match
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <code>(abc)</code>
+                </td>
+                <td>
+                    Capturing group
+                </td>
+                <td>
+                    <code>
+                        "abc"
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>(?:abc)</code>
+                </td>
+                <td>
+                    Non-capturing group
+                </td>
+                <td>
+                    <code>"abc" but not stored</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>cat|dog</code>
+                </td>
+                <td>
+                    Alternation (OR)
+                </td>
+                <td>
+                    "cat"
+                </td>
+            </tr>
+            <tr>
+                <td><code>(\w)\1</code></td>
+                <td>
+                    Backreference to Group 1
+                </td>
+                <td>
+                    "letter", "book"
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>(\d+)-(\d+)</code>
+                </td>
+                <td>
+                    Captures two groups of digits
+                </td>
+                <td>
+                    "2025-19" -> ["2025", "19"]
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+	<h2>Practice Challenges</h2>
+    <ol>
+        <li>Extract the first and last name from "John Smith"
+            <button onclick="show('challenge-1')">Answer</button>
+            <div class="code-block" id="challenge-1" style="display: none;">
+                <p class="answer">
+                    /(\w+)\s+(\w+)/
+                </p>
+            </div>
+        </li>
+        <li>
+            Match HTML-like tags (e.g., <code>&lt;b&gt;text&lt;/b&gt;</code>)
+            <button onclick="show('challenge-2')">Answer</button>
+            <div class="code-block" id="challenge-2" style="display: none;">
+                <p class="answer">
+                    /\&lt;(\w+)\&gt;.*\&lt;\/\1\&gt;/
+                </p>
+            </div>
+        </li>
+        <li>
+            Match repeated words (e.g., "yes yes")
+            <button onclick="show('challenge-3')">Answer</button>
+            <div class="code-block" id="challenge-3" style="display: none;">
+                <p class="answer">
+                    /\b(\w+)\s+\1\b/
+                </p>
+            </div>
+        </li>
+        <li>
+            Extract dates like 2023-12-31 
+            <button onclick="show('challenge-4')">Answer</button>
+            <div class="code-block" id="challenge-4" style="display: none;">
+                <p class="answer">
+                    /(\d{4})-(\d{2})-(\d{2})/
+                </p>
+            </div>
+        </li>
+        <li>
+            Match double characters (e.g., "tt" in "letter"): 
+            <button onclick="show('challenge-5')">Answer</button>
+            <div class="code-block" id="challenge-5" style="display: none;">
+                <p class="answer">
+                    /(\w)\1/
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2 style="margin-top: 1rem;">Real World Practice</h2>
+    <p>You'll use what you learned to solve real world task.</p>
+    <h3>Data</h3>
+    <div class="code-block">
+        <p>
+const users = `<br>
+John Smith<br>
+DOB: 1985-06-23<br>
+Phone: (123) 456-7890<br>
+Email: john.smith@example.com<br>
+<br>
+Jane Doe<br>
+DOB: 1990-12-01<br>
+Phone: (987) 654-3210<br>
+Email: jane@example.org<br>
+`;
+
+        </p>
+    </div>
+    <h3>Your Tasks</h3>
+    <ol>
+        <li>
+            Extract all dates of birth:
+            <button onclick="show('task-1')">Answer</button>
+            <div class="code-block" id="task-1" style="display: none;">
+                <p class="answer">
+                    /\d{4}=\d{2}-\d{2}/g
+                </p>
+            </div>
+        </li>
+        <li>
+            Extract names (first and last)
+            <button onclick="show('task-2')">Answer</button>
+            <div class="code-block" id="task-2" style="display: none;">
+                <p class="answer">
+                    /^(\w+)\s+(\w+)$/gm
+                </p>
+            </div>
+        </li>
+        <li>
+            Extract area codes from phone numbers
+            <button onclick="show('task-3')">Answer</button>
+            <div class="code-block" id="task-3" style="display: none;">
+                <p class="answer">
+                    /\((\d{3})\)/g
+                </p>
+            </div>
+        </li>
+        <li>
+            Extract email usernames
+            <button onclick="show('task-4')">Answer</button>
+            <div class="code-block" id="task-4" style="display: none;">
+                <p class="answer">
+                    /^Email:\s+(\w[\w\.]*)@/gm
+                </p>
+            </div>
+        </li>
+        <li>
+            Match any repeated word in a line
+            <button onclick="show('task-5')">Answer</button>
+            <div class="code-block" id="task-5" style="display: none;">
+                <p class="answer">
+                    /\b(\w+)\s+\1\b/
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2>Day 4 Quiz</h2>
+    <ol>
+        <li>
+            <h4>What does the regex <code>/(ha)+/</code> match?</h4>
+            <ol type="A" id="q-1">
+                <li>
+                    Exactly one "ha"
+                </li>
+                <li>
+                    One or more repetitions of "ha"
+                </li>
+                <li>
+                    Only "haha"
+                </li>
+                <li>
+                    "h" followed by multiple "a"s
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-12')">Answer</button>
+            <div class="code-block" id="a-1" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    <code>
+                        (ha)+
+                    </code> means match "ha" <b>at least once</b>, so "ha", "haha", "hahaha", etc
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>Which regex matches either "yes" or "no"?</h4>
+            <ol type="A" id="q-2">
+                <li>
+                    <code>
+                        /yes||no/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /yes|no/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /yes no/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /(yes)(no)/
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-22')">Answer</button>
+            <div class="code-block" id="a-2" style="display: none;">
+                <p class="answer">
+                    <b>Explanation</b><br>
+                    The pipe <code>
+                        |
+                    </code> means "OR" - this matches "yes" or "no"
+                </p>
+            </div>
+        </li>
+        <li>
+           <h4>What does <code>(\d{3})-(\d{4})</code> capture from <code>123-4567</code></h4>
+           <ol type="A" id="q-3">
+            <li>
+                <code>
+                    ["123-4567","4567"]
+                </code>
+            </li>
+            <li>
+                <code>
+                    ["123", "4567"]
+                </code>
+            </li>
+            <li>
+                <code>
+                    ["4567"]
+                </code>
+            </li>
+            <li>
+                Nothing - it doesn't match.
+            </li>
+           </ol>
+           <button onclick="showAnswer('a-32')">Answer</button>
+           <div class="code-block" id="a-3" style="display: none;">
+            <p class="answer">
+                <b>Explanation:</b><br>
+                Group 1: <code>\d{3}</code> -> "123"<br>
+                Group 2: <code>
+                    \d{4}
+                </code> -> "4567"
+            </p>
+           </div>
+        </li>
+        <li>
+            <h4>What does a non-capturing group look like?</h4>
+            <ol type="A" id="q-4">
+                <li>
+                    <code>
+                        /(abc)/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /abc?/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        (?:abc)
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        (?abc)
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-43')">Answer</button>
+            <div class="code-block" id="a-4" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    The <code>
+                        ?:
+                    </code> tells the engine: group the pattern, but don't save the match.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What does the regex <code>/(\w)\1/</code> match?</h4>
+            <ol type="A" id="q-5">
+                <li>
+                    Two identical digits
+                </li>
+                <li>
+                    Two identical characters next to each other
+                </li>
+                <li>
+                    Two any characters
+                </li>
+                <li>
+                    A single character
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-52')">Answer</button>
+            <div class="code-block" id="a-5" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    <code>
+                        (\w)
+                    </code> captures one character, <code>
+                        \1
+                    </code> looks for the same character repeated.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>Which regex matches names like "Mr. Smith" and "Mrs. Jones" but only captures the name?</h4>
+            <ol type="A" id="q-6">
+                <li>
+                    <code>
+                        /Mr|Mrs\.(\w+)/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /(?:Mr|Mrs)\. (\w+)/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /(Mr|Mrs)\. (\w+)/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /Mr|Mrs|(\w+)/
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-62')">Answer</button>
+            <div class="code-block" id="a-6" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    <code>
+                        (?:Mr|Mrs)
+                    </code> groups without capturing, while <code>
+                        (\w+)
+                    </code> captures the name.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What is the purpose of <code>\1</code> in a regex?</h4>
+            <ol type="A" id="q-7">
+                <li>
+                    Escape character
+                </li>
+                <li>
+                    Captures one character
+                </li>
+                <li>
+                    Backreference to the first capture group
+                </li>
+                <li>
+                    Repeat the regex once
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-73')">Answer</button>
+            <div class="code-block" id="a-7" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    Refers back to the <b>first captured match</b> - useful for detecting repeats or symmetry.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>Which regex would match any repeated word (e.g., "go go")?</h4>
+            <ol type="A" id="q-8">
+                <li>
+                    <code>
+                        /(\w)\1/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /(\w+)\s+\1/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /(\w+)\1/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\b(\w+)\b/
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-82')">Answer</button>
+            <div class="code-block" id="a-8" style="display: none;">
+                <p class="answer">
+                    <b>Explanation: </b><br>
+                    <code>
+                        (\w+)
+                    </code> captures a word, <code>
+                        \1
+                    </code> checks if it's <b>repeated</b> after space(s).
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What does this regex do" <code>
+                /&lt;(\w+)&gt;.*&lt;\/\1&gt;/
+            </code></h4>
+            <ol type="A" id="q-9">
+                <li>
+                    Matches angle brackets
+                </li>
+                <li>
+                    Matches any HTML-like tag with matching open and close
+                </li>
+                <li>
+                    Matches any tag starting with "&lt;"
+                </li>
+                <li>
+                    Invalid regex
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-92')">Answer</button>
+            <div class="code-block" id="a-9" style="display: none;">
+                <p class="answer">
+                    <b>Explain:</b><br>
+                    Captures a tag name <code>
+                        (\w+)
+                    </code> and uses <code>
+                        \1
+                    </code> to match the <b>closing</b> tag correctly.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What will <code>"banana".match(/(an)+/)</code> return?</h4>
+            <ol type="A" id="q-10">
+                <li>
+                    <code>["ana"]</code>
+                </li>
+                <li>
+                    <code>
+                        ["anan"]
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        ["an","an"]
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        ["anan", "an"]
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-102')">Answer</button>
+            <div class="code-block" id="a-10" style="display: none;">
+                <p class="answer">
+                    <b>Explain:</b><br>
+                    <code>
+                        (an)+
+                    </code> matches one or more "an" -> it matches "anan" from the middle of "banana".
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2>Final thought</h2>
+    <p>For day 5 on Regex, click <a href="post-regex-day5-learning-plan.html">Here</a>. </p>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+  <script>
+    function show(str){
+        document.getElementById(str).style.display = "block";
+    }
+    function showAnswer(str) {
+    const index = str.slice(-1); // Get last character
+    const answerId = str.slice(0, -1); // Remove last character to get the element ID
+    const answerElement = document.getElementById(answerId);
+
+    if (!answerElement) return console.warn(`Element with ID '${answerId}' not found`);
+
+    answerElement.style.display = "block";
+
+    const questionId = answerId.replace('a', 'q');
+    const questionElement = document.getElementById(questionId);
+
+    if (!questionElement) return console.warn(`Element with ID '${questionId}' not found`);
+
+    const nthChild = questionElement.children[parseInt(index) - 1];
+
+    if (!nthChild) return console.warn(`Child #${index} not found in '${questionId}'`);
+
+    nthChild.style.backgroundColor = "lightgreen";
+}
+
+  </script>
+</body>
+</html>

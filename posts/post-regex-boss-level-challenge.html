@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RegEx learning">
+  <title>RegEx Boss Level Challenge - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>My Blog</h1>
+      <p class="tagline">Let's learn and grow together.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>Boss Level: Resume Data Parser</h2>
+      <p class="date">Posted on May 22, 2025</p>
+
+      <p>This is your <b>Regex Boss Level Challenge</b> - a <em>real-world mini project</em> designed to put everything you've learned into action.</p>
+      <ol>
+        <li>
+            <section>
+                <h3>
+                    Goal
+                </h3>
+                <p>
+                    You've been tasked with building a <b>resume parser</b> that extracts key information from unstructured resumes stored in plain text. The company wants to automate this process for faster candidate screening.
+                </p>
+                
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Sample Resume Block (Unstructured text)
+                </h3>
+                
+                <div class="code-block">
+                    <p>
+Name: Jane Doe<br>
+Email: jane.doe1990@gmail.com<br>
+Phone: 123-4567<br>
+Website: https://janedoe.dev<br>
+LinkedIn: https://linkedin.com/in/janedoe<br>
+GitHub: https://github.com/janedoe<br>
+DOB: 1990-08-15<br>
+Skills: JavaScript, Python, HTML/CSS, React, Node.js<br>
+Experience:<br>
+- Frontend Developer at Webify (2019-2022)<br>
+- Intern at CodeBase (2018)<br>
+<br>
+Education:<br>
+B.Sc. Computer Science, University of Example (2014-2018)<br>
+<br>
+Other Candidates:<br>
+Name: Bob Smith<br>
+Email: bob@domain<br>
+Phone: 0000-000<br>
+DOB: 1991-15-40<br>
+Skills: Java, Spring, ?<br>
+                        
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Your Tasks (Step-by-step)</h3>
+                <ol>
+                    <li>
+                        Extract only valid emails
+                    </li>
+                    <li>
+                        Validate phone numbers in <code>XXX-XXXX</code> format
+                    </li>
+                    <li>
+                        Validate and extract valid DOBs in <code>
+                            YYYY-MM-DD
+                        </code>
+                    </li>
+                    <li>
+                        Extract candidate names (lines starting with <code>Name:</code>)
+                    </li>
+                    <li>
+                        Extract GitHub and LinkedIn URLs
+                    </li>
+                    <li>
+                        Extract list of skills (comma-separated)
+                    </li>
+                    <li>
+                        Identify invalid entries (like bad emails or dates)
+                    </li>
+                </ol>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>What You'll Reinforce</h3>
+                <ul>
+                    <li>Anchors <code>^, $</code></li>
+                    <li>
+                        Quantifiers <code>
+                            {n}, +, *
+                        </code>
+                    </li>
+                    <li>
+                        Character classes <code>\d, \w, \s, </code> classes
+
+
+                    </li>
+                    <li>
+                        Named groups <code>
+                            (?<name>...)
+                        </code>
+                    </li>
+                    <li>
+                        Groups <code>(...)</code>, alternation <code>|</code>
+                    </li>
+                    <li>
+                        Lookaheads/lookbehinds to filter junk
+                    </li>
+                    <li>
+                        Global and multiline flags (<code>gm</code>, <code>i</code>)
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Sample Skeleton</h3>
+                
+                <div class="code-block">
+                    <p>
+                        const resumeData = `...`; // your block of resumes<br>
+<br>
+// 1. Extract valid emails
+const emailPattern = /^Email:\s*(\w+(?:\.\w+)?@\w+\.\w{2,4})$/gm;<br>
+const emails = [...resumeData.matchAll(emailPattern)].map(m => m[1]);<br>
+<br>
+// 2. Valid phone numbers<br>
+const phonePattern = /^Phone:\s*(\d{3}-\d{4})$/gm;<br>
+const phones = [...resumeData.matchAll(phonePattern)].map(m => m[1]);<br>
+<br>
+// 3. Valid DOBs<br>
+const dobPattern = /^DOB:\s*((?:19|20)\d{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01]))$/gm;<br>
+const dobs = [...resumeData.matchAll(dobPattern)].map(m => m[1]);<br>
+<br>
+// 4. Extract names<br>
+const namePattern = /^Name:\s*(.+)$/gm;<br>
+const names = [...resumeData.matchAll(namePattern)].map(m => m[1]);<br>
+<br>
+// 5. LinkedIn + GitHub<br>
+const linkPattern = /^(GitHub|LinkedIn):\s*(https:\/\/\S+)$/gm;<br>
+const links = [...resumeData.matchAll(linkPattern)].map(m => ({ platform: m[1], url: m[2] }));<br>
+<br>
+// 6. Extract skills<br>
+const skillsPattern = /^Skills:\s*(.+)$/gm;<br>
+const skills = [...resumeData.matchAll(skillsPattern)].map(m => m[1].split(/\s*,\s*/));<br>
+<br>
+// 7. Invalid emails<br>
+const invalidEmailPattern = /^Email:\s*(?!\w+@\w+\.\w{2,4}).+$/gm;<br>
+const invalidEmails = [...resumeData.matchAll(invalidEmailPattern)].map(m => m[0]);
+
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Output Example
+                </h3>
+                <div class="code-block">
+                    <p>
+                      {<br>
+  "Name": "Jane Doe",<br>
+  "Email": "jane.doe1990@gmail.com",<br>
+  "Phone": "123-4567",<br>
+  "DOB": "1990-08-15",<br>
+  "GitHub": "https://github.com/janedoe",<br>
+  "LinkedIn": "https://linkedin.com/in/janedoe",<br>
+  "Skills": ["JavaScript", "Python","HTML/CSS", "React", "Node.js"]<br>
+}
+  
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <h3>Bonus Challenges</h3>
+            <ul>
+                <li>
+                    Turn this into a resume scoring tool (e.g., count matching skills against a job description)
+                </li>
+                <li>
+                    Output data as JSON objects per candidate
+                </li>
+                <li>
+                    dd CLI support for parsing multiple .txt files
+                </li>
+                <li>
+                    Integrate into a simple web app
+                </li>
+            </ul>
+        </li>
+      </ol>
+
+    <h2>Final thought</h2>
+    <p>If you want a beep into the Demo app click <a href="../resume-parser.html">Here</a>. </p>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+  <script>
+    function show(str){
+        document.getElementById(str).style.display = "block";
+    }
+    function showAnswer(str) {
+    const index = str.slice(-1); // Get last character
+    const answerId = str.slice(0, -1); // Remove last character to get the element ID
+    const answerElement = document.getElementById(answerId);
+
+    if (!answerElement) return console.warn(`Element with ID '${answerId}' not found`);
+
+    answerElement.style.display = "block";
+
+    const questionId = answerId.replace('a', 'q');
+    const questionElement = document.getElementById(questionId);
+
+    if (!questionElement) return console.warn(`Element with ID '${questionId}' not found`);
+
+    const nthChild = questionElement.children[parseInt(index) - 1];
+
+    if (!nthChild) return console.warn(`Child #${index} not found in '${questionId}'`);
+
+    nthChild.style.backgroundColor = "lightgreen";
+}
+
+  </script>
+</body>
+</html>

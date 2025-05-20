@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RegEx learning">
+  <title>Day 2 RegEx learning plan - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Day 2 RegEx Intermediate Patters</h1>
+      <p class="tagline">We'll go through concepts, examples, and practice challenges.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>Day 2: Intermediate Patters on Regex Learning Path</h2>
+      <p class="date">Posted on May 19, 2025</p>
+
+      <p>Great job on completing Day1 of your regex learning! You've already covered some essential basics. For Day 2, we can build on that foundation with more intermediate concepts that will help you write more powerful and flexible expressions.</p>
+      <ol>
+        <li>
+            <section>
+                <h3>Character Sets(<code>[abc]</code>)</h3>
+                <h4>Meaning:</h4>
+                <p>Matches <strong>any one character</strong> between the brackets.</p>
+                <div class="code-block">
+                    <p>/[aeiou]/.test("hat"); // true (continas 'a')<br>
+                    "cat".match(/[cmt]/g); // ['c', 't']</p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>Match any vowel: <code>/[aeiou]/</code></li>
+                    <li>
+                        Match the digits 1, 2, or 3: <code>/[123]/</code>
+                    </li>
+                    <li>
+                        Match "a", "b", or "c" in "abc123"
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    <code>
+                        [^abc]
+                    </code>
+                     - Negated Character Set
+                </h3>
+                <h4>Meaning:</h4>
+                <p>Matches <strong>any character that is NOT</strong> in the set</p>
+                <div class="code-block">
+                    <p>
+                        /[^0-9]/.test("a"); // true (not a digit)<br>
+"abc123!".match(/[^a-zA-Z0-9]/g); // ['!']
+
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match anything except digits: <code>/[^0-9]/</code>
+                    </li>
+                    <li>
+                        Match non-vowels in "regex": <code>
+                            /[^aeiou]/g
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>.</code> - Dot (Wildcard)</h3>
+                <h4>Meaning:</h4>
+                <p>Matches <strong>any character except newline.</strong></p>
+                <div class="code-block">
+                    <p>
+                        /.at/.test("cat"); // true <br>
+"flat bat mat".match(/.at/g); // ['lat', 'bat', 'mat']
+
+                    </p>
+                </div>
+                <h4>Practice:</h4>
+                <ul>
+                    <li>Match any 3-letter word ending in "at": <code>/.at/</code></li>
+                    <li>
+                        Match the second character in "a_b": <code>/a.b/</code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>|</code> Alternation</h3>
+                <h4>Meaning:</h4>
+                <p>Acts like <code>OR</code> between alternatives.</p>
+                <div class="code-block">
+                    <p>
+                        /dog|cat/.test("hotdog"); // true <br>
+                        "catdog".match(/cat|dog/g); // ['cat', 'dog']
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match "yes" or "no": <code>/yes|no/</code>
+                    </li>
+                    <li>
+                        Match "blue" or "green" in a string
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>()</code> - Grouping/Capturing</h3>
+                <h4>Meaning</h4>
+                <p>Groups patterns and <strong>captures</strong> what was matched.</p>
+                <div class="code-block">
+                    <p>
+                        /(abc)+/.test("abcabc"); // true <br>
+                        "ha ha ha".match(/(ha)+/); // ['ha']
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match one or more "ha": <code>/(ha)+/</code>
+                    </li>
+                    <li>
+                        Match full names like "John Smith": <code>
+                            /([A-Z][a-z]+) ([A-Z](a-z)+)/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    <code>\s</code> - Whitespace
+                </h3>
+                <h4>Meaning:</h4>
+                <p>Matches spaces, tabs, newlines.</p>
+                <div class="code-block">
+                    <p>
+                        /\s/.test("hello world"); // true<br>
+                        "hello world".match(/\s+/); //[' ']
+                    </p>
+                </div>
+                <h4>Practice:</h4>
+                <ul>
+                    <li>
+                        Match a space: <code>/\s/</code>
+                    </li>
+                    <li>
+                        Match multiple spaces: <code>/\s+</code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>\S</code> - None-whitespace</h3>
+                <h4>Meaning:</h4>
+                <p>Matches any non-space characer.</p>
+                <div class="code-block">
+                    <p>
+                        /\S/.test(" "); // false <br>
+                        "abc 123".match(/\S+/g); //['abc', '123']
+                    </p>
+                </div>
+                <h4>Practice:</h4>
+                <ul>
+                    <li>
+                        Match non-space sequences: <code>/\S+/</code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+      </ol>
+    <h2>Summary Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Pattern
+                </th>
+                <th>
+                    Meaning
+                </th>
+                <th>
+                    Example Match
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <code>[abc]</code>
+                </td>
+                <td>
+                    One of a, b, or c
+                </td>
+                <td>
+                    <code>
+                        "a"
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>[^abc]</code>
+                </td>
+                <td>
+                    Not a, b, or c
+                </td>
+                <td>
+                    <code>"x"</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>.</code>
+                </td>
+                <td>
+                    Any character (except newline)
+                </td>
+                <td>
+                    <code>"c"</code>, <code>"1"</code>, <code>"!"</code>
+                </td>
+            </tr>
+            <tr>
+                <td><code>|</code></td>
+                <td>
+                    Alternation (OR)
+                </td>
+                <td>
+                    <code>/cat|dog/</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>()</code>
+                </td>
+                <td>
+                    Capturing group
+                </td>
+                <td>
+                    <code>"(abc)"</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>(?:)</code>
+                </td>
+                <td>
+                    Non-capturing group
+                </td>
+                <td>
+                    <code>"abc"</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>\s</code>
+                </td>
+                <td>
+                    Whitespace
+                </td>
+                <td>
+                    <code>" "</code> (space)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>
+                        \S
+                    </code>
+                </td>
+                <td>
+                    Non-whitespace
+                </td>
+                <td>
+                    <code>"a"</code>,<code>"1"</code>, <code>"!"</code>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+	<h3>Practice Challenges</h3>
+    <ol>
+        <li>Match the words "red", "green", or "blue".
+            <button onclick="show('challenge-1')">Answer</button>
+            <div class="code-block" id="challenge-1" style="display: none;">
+                <p class="answer">
+                    /red|green|blue/
+                </p>
+            </div>
+        </li>
+        <li>
+            Match a U.S. phone number format like (123) 456-7890:
+            <button onclick="show('challenge-2')">Answer</button>
+            <div class="code-block" id="challenge-2" style="display: none;">
+                <p class="answer">
+                    /\(d{3}\)\s\d{3}-\d{4}/
+                </p>
+            </div>
+        </li>
+        <li>
+            Match all words (separated by whitespace):
+            <button onclick="show('challenge-3')">Answer</button>
+            <div class="code-block" id="challenge-3" style="display: none;">
+                <p class="answer">
+                    /\s+/g
+                </p>
+            </div>
+        </li>
+        <li>
+            Match three-letter words ending in "at": 
+            <button onclick="show('challenge-4')">Answer</button>
+            <div class="code-block" id="challenge-4" style="display: none;">
+                <p class="answer">
+                    /\b.at\b/g
+                </p>
+            </div>
+        </li>
+        <li>
+            Match "ha" or "haha" or "hahaha" using grouping: 
+            <button onclick="show('challenge-5')">Answer</button>
+            <div class="code-block" id="challenge-5" style="display: none;">
+                <p class="answer">
+                    /(ha)+/
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2 style="margin-top: 1rem;">Real World Practice</h2>
+    <p>You'll use what you learned to extract structured info from messy text.</p>
+    <h3>Data</h3>
+    <div class="code-block">
+        <p>
+            const messyData = `<br>
+User: Mike_007<br>
+Email: mike007@example.com<br>
+Note: Happy customer.<br>
+<br>
+User: sam99<br>
+Email: not-an-email@wrong<br>
+Comment: Ordered twice.<br>
+<br>
+User: Alice1990<br>
+Email: alice_1990@sample.net<br>
+Message: Hello there!<br>
+`;
+
+        </p>
+    </div>
+    <h3>Your Tasks</h3>
+    <ol>
+        <li>
+            Extract <b>all valid emails</b> (word characters only before @, then word chars, then .com/.net/ect): 
+            <button onclick="show('task-1')">Answer</button>
+            <div class="code-block" id="task-1" style="display: none;">
+                <p class="answer">
+                    /\b\w+@\w+\.\w{2,3}\b/g
+                </p>
+            </div>
+        </li>
+        <li>
+            Extract all <b>usernames: </b>
+            <button onclick="show('task-2')">Answer</button>
+            <div class="code-block" id="task-2" style="display: none;">
+                <p class="answer">
+                    /User:\s(\w+)/g
+                </p>
+            </div>
+        </li>
+        <li>
+            Extract all <b>lines with a comment or note: </b>
+            <button onclick="show('task-3')">Answer</button>
+            <div class="code-block" id="task-3" style="display: none;">
+                <p class="answer">
+                    /^(Note|Comment):.+$/gm
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2>Day 2 Quiz</h2>
+    <ol>
+        <li>
+            <h4>What does the patter <code>/[a-z]/</code> match?</h4>
+            <ol type="A" id="q-1">
+                <li>
+                    Any lowercase letter
+                </li>
+                <li>
+                    A digit from 0 to 9
+                </li>
+                <li>Any uppercase letter</li>
+                <li>
+                    Any character except a-z
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-11')">Answer</button>
+            <div class="code-block" id="a-1" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    <code>[a-z]</code> is a character class that matches any single lowercase letter from <code>a</code> to <code>z</code>.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What does <code>/[^0-9]/</code></h4>
+            <ol type="A" id="q-2">
+                <li>A number</li>
+                <li>Only whitespace</li>
+                <li>Any character not a digit</li>
+                <li>Only lowercase letters</li>
+            </ol>
+            <button onclick="showAnswer('a-23')">Answer</button>
+            <div class="code-block" id="a-2" style="display: none;">
+                <p class="answer">
+                    <b>Explanation</b><br>
+                    <code>[^0-9]</code> is a negated character class that matches any single character <b>except</b> digits 0 through 9.
+                </p>
+            </div>
+        </li>
+        <li>
+           <h4>What does <code>/\s+/</code> match in a string?</h4>
+           <ol type="A" id="q-3">
+            <li>One or more <b>spaces</b></li>
+            <li>
+                One or more <b>non-whitespace</b> characters
+            </li>
+            <li>
+                Any single word
+            </li>
+            <li>
+                A line break only
+            </li>
+           </ol>
+           <button onclick="showAnswer('a-31')">Answer</button>
+           <div class="code-block" id="a-3" style="display: none;">
+            <p class="answer">
+                <b>Explain:</b><br>
+                <code>\s</code> matches any whitespace character (spaces, tabs, line breaks), and <code>+</code> means one or more occurrences.
+            </p>
+           </div>
+        </li>
+        <li>
+            <h4>Which regex matches either "cat" or "dog"</h4>
+            <ol type="A" id="q-4">
+                <li><code>/cat|dog/</code></li>
+                <li><code>/cat&dog/</code></li>
+                <li><code>/cat||dog/</code></li>
+                <li><code>/cat\/dog/</code></li>
+            </ol>
+            <button onclick="showAnswer('a-41')">Answer</button>
+            <div class="code-block" id="a-4" style="display: none;">
+                <p class="answer">
+                    <b>Explain:</b><br>
+                    The pipe <code>|</code> acts as an OR operator matching either "cat" or "dog".
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What will <code>/(ha)+/.test("hahaha")</code> return?</h4>
+            <ol type="A" id="q-5">
+                <li>
+                    false
+                </li>
+                <li>true</li>
+                <li>undefined</li>
+                <li>"ha"</li>
+            </ol>
+            <button onclick="showAnswer('a-52')">Answer</button>
+            <div class="code-block" id="a-5" style="display: none;">
+                <p class="answer">
+                    <b>Explain:</b><br>
+                    The regex matches one or more repetitions of "ha", and "hahaha" is "ha" repeated 3 times, so <code>.test()</code> returns true.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>Which of the following will match a word character followed by a space?</h4>
+            <ol type="A" id="q-6">
+                <li>
+                    <code>/\w\s/</code>
+                </li>
+                <li>
+                    <code>
+                        /\s\w/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\w\w/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\S\s/
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-61')">Answer</button>
+            <div class="code-block" id="a-6" style="display: none;">
+                <p class="answer">
+                    <b>Explain</b><br>
+                    <code>\w</code> matches any word character (letter, digit, underscore), followed by <code>\s</code> which matches a whitespace character.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>Which regex matches a username that starts with a letter followed by digits (like "a123")</h4>
+            <ol type="A" id="q-7">
+                <li>
+                    <code>
+                        /^\d+\w$/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /^[a-zA-Z]\d+$/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /^[0-9][a-z]+$/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /^\w+$/
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-72')">Answer</button>
+            <div class="code-block" id="a-7" style="display: none;">
+                <p class="answer">
+                    <b>Explain:</b><br>
+                            <code>
+                                ^[a-zA-Z]
+                            </code> means the string starts with a letter
+                        <br>
+                            <code>
+                                \d+
+                            </code>
+                             means one or more digits
+                        <br>
+                            <code>
+                                $
+                            </code> means the string ends here
+                        <br>
+                    So the entire string must be a letter followed by digits.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What does <code>/\S+/g</code> return when used on <code>"Hi there!"</code>?</h4>
+            <ol type="A" id="q-8">
+                <li>
+                    <code>
+                        ["Hi there!"]
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        ["Hi", "there!"]
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        [" "]
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        ["Hi", " ", "there!"]
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-82')">Answer</button>
+            <div class="code-block" id="a-8" style="display: none;">
+                <p class="answer">
+                    <b>Explain: </b><br>
+                    <code>\S+</code> matches one or more <b>non-whitespace</b> characters. The global flag <code>g</code> finds all such matches separately.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>Which regex matches the three-letter words "cat", "bat", or "rat"?</h4>
+            <ol type="A" id="q-9">
+                <li>
+                    <code>
+                        /[cbr]at/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /cat|bat|rat/
+                    </code>
+                </li>
+                <li>
+                    Both A and B
+                </li>
+                <li>
+                    <code>
+                        /.*at/
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-93')">Answer</button>
+            <div class="code-block" id="a-9" style="display: none;">
+                <p class="answer">
+                    <b>Explain:</b><br>
+                    <code>
+                        [cbr]at
+                    </code> matches any of 'c', 'b', or 'r' followed by "at"<br>
+                    <code>
+                        cat|bat|rat
+                    </code> explicitly matches any of those three words<br>Both will match the same set of words.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What does <code>/(?:abc)+/.test("abcabc")</code> return?</h4>
+            <ol type="A" id="q-10">
+                <li>
+                    <code>
+                        false
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        true
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        "abc"
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        undefined
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-102')">Answer</button>
+            <div class="code-block" id="a-10" style="display: none;">
+                <p class="answer">
+                    <b>Explain:</b><br>
+                    <code>
+                        (?:abc)+
+                    </code> matches one or more repetitions of the sequence "abc". The <code>test()</code> returns true because "abcabc" is "abc" twice.
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2>Final thought</h2>
+    <p>For day 3 on Regex, click <a href="post-regex-day3-learning-plan.html">Here</a>. </p>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+  <script>
+    function show(str){
+        document.getElementById(str).style.display = "block";
+    }
+    function showAnswer(str){
+        const n = str.charAt(str.length -1);
+        console.log(n);
+        let newStr = str.slice(0, -1);  
+        console.log(newStr);
+        document.getElementById(newStr).style.display = "block";
+        const parent = document.getElementById(newStr.replace('a', 'q'));
+        console.log(parent.innerHTML);
+        const nthChild = parent.children[n - 1];
+        console.log(nthChild.innerHTML);
+        nthChild.style.backgroundColor = "lightgreen";
+    }
+  </script>
+</body>
+</html>

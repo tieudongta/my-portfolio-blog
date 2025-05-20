@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Parser</title>
+  <style>
+    body { font-family: sans-serif; padding: 2rem; max-width: 800px; margin: auto; }
+    textarea { width: 100%; height: 200px; margin-bottom: 1rem; padding: 1rem; font-family: monospace; }
+    pre { background: #f0f0f0; padding: 1rem; border-radius: 8px; }
+    button { background: #007bff; color: white; border: none; padding: 0.5rem 1rem; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+    .result { margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <h1>📄 Resume Parser</h1>
+  <textarea id="resumeInput" placeholder="Paste raw resume text here..."></textarea>
+  <br />
+  <button onclick="parseResumes()">Parse Resumes</button>
+  <div id="output" class="result"></div>
+
+  <script>
+    function parseResumes() {
+      const input = document.getElementById("resumeInput").value;
+      const blocks = input.trim().split(/\n(?=Name:)/);
+      const results = blocks.map((block) => {
+        const extract = (pattern) => {
+          const match = block.match(pattern);
+          return match ? match[1] : null;
+        };
+
+        const skills = extract(/Skills:\s*(.+)/)?.split(/\s*,\s*/);
+
+        return {
+          name: extract(/^Name:\s*(.+)/m),
+          email: extract(/^Email:\s*(\w+(?:\.\w+)?@\w+\.\w{2,4})/m),
+          phone: extract(/^Phone:\s*(\d{3}-\d{4})/m),
+          dob: extract(/^DOB:\s*((?:19|20)\d{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01]))/m),
+          github: extract(/^GitHub:\s*(https:\/\/github\.com\/\S+)/m),
+          linkedin: extract(/^LinkedIn:\s*(https:\/\/linkedin\.com\/in\/\S+)/m),
+          skills: skills || [],
+        };
+      });
+
+      const output = document.getElementById("output");
+      output.innerHTML = results.map((data, i) => `
+        <h3>Candidate ${i + 1}</h3>
+        <pre>${JSON.stringify(data, null, 2)}</pre>
+      `).join("\n");
+    }
+  </script>
+</body>
+</html>

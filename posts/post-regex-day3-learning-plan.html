@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RegEx learning">
+  <title>Day 3 RegEx learning plan - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Day 3 - RegEx Anchors, Boundaries, Lookaheads, and More Patters</h1>
+      <p class="tagline">We'll go through concepts, examples, and practice challenges.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>Day 3 - RegEx Anchors, Boundaries, Lookaheads, and More Patters</h2>
+      <p class="date">Posted on May 20, 2025</p>
+
+      <p>Great job on completing Day 2 of your regex learning! You've already covered some immediate knowledges on Regex. For Day 3, we explore Regex Anchors, Boundaries, Lookaheads, and More.</p>
+      <ol>
+        <li>
+            <section>
+                <h3>
+                    <code>
+                        \b
+                    </code> - Word Boundary
+                </h3>
+                <h4>Meaning:</h4>
+                <p>Matches the position <b>between a word character and a non-word character</b>. It doesn't consume characters -- it's just a position.</p>
+                <div class="code-block">
+                    <p>
+                        /\bcat/.test("a cat"); // true<br>
+                        /\bcat/.test("scatter"); // false
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match the word "cat" only when it's a whole word: <code>
+                            /\bcat\b/
+                        </code>
+                    </li>
+                    <li>
+                        Match 3-letter words: <code>
+                            /\b\w{3}\b/g
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    <code>
+                        \B
+                    </code>
+                     - Non-Word Boundary
+                </h3>
+                <h4>Meaning:</h4>
+                <p>
+                    Matches where <b>\b doesn't</b>, i.e., <b>inside</b> a word.
+                </p>
+                <div class="code-block">
+                    <p>
+                        /\Bend/.test("bend"); // true <br>
+                        /\Bcat/.test("scat"); // true 
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match "end" only <b>inside</b> words: <code>/\Bend/</code>
+                    </li>
+                    <li>
+                        Match "ing" <b>not</b> at the start or end: <code>
+                            /\Bing\B/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>(?=...)</code> - Positive Lookahead</h3>
+                <h4>Meaning:</h4>
+                <p>Asserts that what follows the current position <b>must match</b> the pattern inside</p>
+                <div class="code-block">
+                    <p>
+                        /\d(?=px)/.text("5px"); // true <br>
+                        "5px".match(/\d(?=px)/); // ['5']
+                    </p>
+                </div>
+                <h4>Practice:</h4>
+                <ul>
+                    <li>
+                        Match digit <b>before</b> "px": <code>
+                            /\d(?=px)/
+                        </code>
+                    </li>
+                    <li>
+                        Match "http" <b>only if</b> followed by "s": <code>
+                            /http(?=s)/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>(?!...)</code> - Negative Lookahead</h3>
+                <h4>Meaning:</h4>
+                <p>
+                    Asserts that what follows <b>must NOT match</b> the pattern.
+                </p>
+                <div class="code-block">
+                    <p>
+                        /\d(?!px)/.test("5em"); // true<br>
+                        "5em".match(/\d(?!px)/); //['5']
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match digit <b>not before</b> "px": <code>
+                            /\d(?!px)/
+                        </code>
+                    </li>
+                    <li>
+                        Match "foo" <b>not followed by</b> "bar": <code>
+                            /foo(?!bar)/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3><code>(?&lt;=...)</code> - Positive Lookbehind (Limited browser support)</h3>
+                <h4>Meaning</h4>
+                <p>
+                    Asserts that what comes <b>before</b> the current position must match.
+                </p>
+                <div class="code-block">
+                    <p>
+                        /(?<=\$)\d+/.test("$100"); // true<br>
+                        "$100".match(/(?<=\$)\d+/); // ['100']
+                    </p>
+                </div>
+                <h4>Practice</h4>
+                <ul>
+                    <li>
+                        Match digits <b>after a $</b> sign: <code>
+                            /(?&lt;=\$)\d+/
+                        </code>
+                    </li>
+                    <li>
+                        Match word after "@": <code>
+                            /(?&lt;=@)\w+/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    <code>(?&lt;!...)</code> - Negative Lookbehind (Limited browser support)
+                </h3>
+                <h4>Meaning:</h4>
+                <p>
+                    Asserts that what comes <b>before</b> must NOT match.
+                </p>
+                <div class="code-block">
+                    <p>
+                        /(?&lt;!\$)\d+/.test("100"); // true <br>
+                        "100".match(/(?&lt;!\$)\d+/); //['100']
+                    </p>
+                </div>
+                <h4>Practice:</h4>
+                <ul>
+                    <li>
+                        Match digits <b>not after $</b>: <code>
+                            /(?&lt;!\$)\d+/
+                        </code>
+                    </li>
+                </ul>
+            </section>
+        </li>
+      </ol>
+    <h2>Summary Table</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>
+                    Pattern
+                </th>
+                <th>
+                    Meaning
+                </th>
+                <th>
+                    Example Match
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <code>\b</code>
+                </td>
+                <td>
+                    Word boundary
+                </td>
+                <td>
+                    <code>
+                        " cat ", "car."
+                    </code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>\B</code>
+                </td>
+                <td>
+                    Non-word boundary
+                </td>
+                <td>
+                    <code>"scatter"</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>(?=...)</code>
+                </td>
+                <td>
+                    Positive lookahead
+                </td>
+                <td>
+                    <code>
+                        "q"
+                    </code> in <code>"q1"</code> when followed by <code>"1"</code>
+                </td>
+            </tr>
+            <tr>
+                <td><code>(?!...)</code></td>
+                <td>
+                    Negative lookahead
+                </td>
+                <td>
+                    Not followed by ...
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>(?<=...)</code>
+                </td>
+                <td>
+                    Positive lookbehind (before pattern)
+                </td>
+                <td>
+                    <code>"100"</code> after <code>$</code>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <code>(?<!...)</code>
+                </td>
+                <td>
+                    Negative lookbehind
+                </td>
+                <td>
+                    Not preceded by...
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+	<h2>Practice Challenges</h2>
+    <ol>
+        <li>Match "cat" as a full word, not part of "scatter"
+            <button onclick="show('challenge-1')">Answer</button>
+            <div class="code-block" id="challenge-1" style="display: none;">
+                <p class="answer">
+                    /\bcat\b/
+                </p>
+            </div>
+        </li>
+        <li>
+            Match any number <b>before</b> "px":
+            <button onclick="show('challenge-2')">Answer</button>
+            <div class="code-block" id="challenge-2" style="display: none;">
+                <p class="answer">
+                    /\d+(?=px)/
+                </p>
+            </div>
+        </li>
+        <li>
+            Match any number not before "px":
+            <button onclick="show('challenge-3')">Answer</button>
+            <div class="code-block" id="challenge-3" style="display: none;">
+                <p class="answer">
+                    /\d+(?!px)/
+                </p>
+            </div>
+        </li>
+        <li>
+            Extract the domain name from emails like "john@example.com" 
+            <button onclick="show('challenge-4')">Answer</button>
+            <div class="code-block" id="challenge-4" style="display: none;">
+                <p class="answer">
+                    /(?<=@)\w+/
+                </p>
+            </div>
+        </li>
+        <li>
+            Match words that start and end with the same letter: 
+            <button onclick="show('challenge-5')">Answer</button>
+            <div class="code-block" id="challenge-5" style="display: none;">
+                <p class="answer">
+                    /\b(\w)\w*\1\b/g
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2 style="margin-top: 1rem;">Real World Practice</h2>
+    <p>You'll use what you learned to solve real world task.</p>
+    <h3>Data</h3>
+    <div class="code-block">
+        <p>
+const css = `<br>
+margin: 10px;<br>
+padding: 20px;<br>
+width: 100%;<br>
+font-size: 14pt;<br>
+height: 200px;<br>
+color: #fff;<br>
+`;<br>
+<br>
+const emails = `<br>
+john.doe@gmail.com<br>
+not-an-email@wrong<br>
+user_123@example.net<br>
+hello@world.io<br>
+`;
+        </p>
+    </div>
+    <h3>Your Tasks</h3>
+    <ol>
+        <li>
+            Extract only the numbers used for <code>px</code> values:
+            <button onclick="show('task-1')">Answer</button>
+            <div class="code-block" id="task-1" style="display: none;">
+                <p class="answer">
+                    /\d+(?=px)/g
+                </p>
+            </div>
+        </li>
+        <li>
+            Extract only valid domain names from emails
+            <button onclick="show('task-2')">Answer</button>
+            <div class="code-block" id="task-2" style="display: none;">
+                <p class="answer">
+                    /@(\w+\.\w{2,3})/g
+                </p>
+            </div>
+        </li>
+        <li>
+            Match lines that contain a color hex code
+            <button onclick="show('task-3')">Answer</button>
+            <div class="code-block" id="task-3" style="display: none;">
+                <p class="answer">
+                    /^.*#{3,6}.*$/gm
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2>Day 3 Quiz</h2>
+    <ol>
+        <li>
+            <h4>What does the regex <code>/\bcat\b/</code> match?</h4>
+            <ol type="A" id="q-1">
+                <li>
+                    Only "cat" when it is a full word
+                </li>
+                <li>
+                    Any word containing "cat"
+                </li>
+                <li>
+                    "cat" at the start of a string
+                </li>
+                <li>
+                    "cat" anywhere, including inside other words
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-11')">Answer</button>
+            <div class="code-block" id="a-1" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    <code>\b</code> ensures it's bounded by non-word characters - not part of another word like "scatter".
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>Which regex matches a number only if it's followed by "px"?</h4>
+            <ol type="A" id="q-2">
+                <li>
+                    <code>
+                        /px\d+/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\d(?=px)/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\d(?&lt;=px)/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /px(?=\d)/
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-22')">Answer</button>
+            <div class="code-block" id="a-2" style="display: none;">
+                <p class="answer">
+                    <b>Explanation</b><br>
+                    This is a <b>positive lookahead</b> - it matches a digit <b>only if </b> it's flollowed by "px";
+                </p>
+            </div>
+        </li>
+        <li>
+           <h4>What is the difference between <code>\b</code> and <code>\B</code>?</h4>
+           <ol type="A" id="q-3">
+            <li>
+                <code>
+                    \b
+                </code> matches inside words; <code>
+                    \B
+                </code> matches outside words
+            </li>
+            <li>
+                <code>
+                    \b
+                </code> matches whole words;
+                <code>\B</code>
+                 matches digits
+            </li>
+            <li>
+                <code>\b</code> is a word boundary; <code>
+                    \B
+                </code> is a non-word boundary
+            </li>
+            <li>
+                They are aliases of each other
+            </li>
+           </ol>
+           <button onclick="showAnswer('a-33')">Answer</button>
+           <div class="code-block" id="a-3" style="display: none;">
+            <p class="answer">
+                <b>Explanation:</b><br>
+                <code>\b</code> matches <b>between</b> word and non-word characters. <code>\B</code> does the opposite.
+            </p>
+           </div>
+        </li>
+        <li>
+            <h4>What does <code>
+                /foo(?!bar)/
+            </code> match?</h4>
+            <ol type="A" id="q-4">
+                <li>
+                    "foobar" only
+                </li>
+                <li>
+                    "foo" only if not followed by "bar"
+                </li>
+                <li>
+                    "bar" after "foo"
+                </li>
+                <li>
+                    "foo" only if it's at the end of the string
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-42')">Answer</button>
+            <div class="code-block" id="a-4" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    This is a <b>negative lookahead</b>: match "foo" but only if "bar" does <b>not</b> follow.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>Which regex matches digits only if they come after a dollar sign <code>$</code></h4>
+            <ol type="A" id="q-5">
+                <li>
+                    <code>
+                        /\$[0-9]+/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\d+(?&lt;=\$)/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /(?&lt=\$)\d+/
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\d(?=\$)/
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-52')">Answer</button>
+            <div class="code-block" id="a-5" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    This is a <b>positive lookbehind</b> - the digits must be <b>preceded by</b> a <code>$</code>. Note: Escaping <code>$</code> is required!
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What will <code>
+                "abc123px".match(/\d+(?=px)/)
+            </code> return?</h4>
+            <ol type="A" id="q-6">
+                <li>
+                    <code>
+                        ["123px"]
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        ['px']
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        ['123']
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        null
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-63')">Answer</button>
+            <div class="code-block" id="a-6" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    It matches the digits <b>before</b> "px" - the <code>px</code> isn't included.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What does <code>/\Bing/</code> match in <code>"singing"</code></h4>
+            <ol type="A" id="q-7">
+                <li>
+                    "ing" at the end only
+                </li>
+                <li>
+                    Nothing = it requires a word boundary
+                </li>
+                <li>
+                    "ing"  when it's inside a word
+                </li>
+                <li>
+                    The full word "singing"
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-73')">Answer</button>
+            <div class="code-block" id="a-7" style="display: none;">
+                <p class="answer">
+                    <b>Explanation:</b><br>
+                    <code>\B</code> requires <b>no word boundary</b>. so "ing" in the middle of "singing" qualifies.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>Which expression finds three-letter words only?</h4>
+            <ol type="A" id="q-8">
+                <li>
+                    <code>
+                        /\b\w{3}\b/g
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\w{3}/g
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\b{3}/g
+                    </code>
+                </li>
+                <li>
+                    <code>
+                        /\B\w{3}\B/g
+                    </code>
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-81')">Answer</button>
+            <div class="code-block" id="a-8" style="display: none;">
+                <p class="answer">
+                    <b>Explanation: </b><br>
+                    This ensures exactly <b>3 characters</b>, bounded by word boundaries = full word.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>What does this match: <code>
+                /(?&lg;!\$)\d+/
+            </code>?</h4>
+            <ol type="A" id="q-9">
+                <li>
+                    Digits preceded by <code>$</code>
+                </li>
+                <li>
+                    Digits not preceded by <code>$</code>
+                </li>
+                <li>
+                    Digits followed by <code>$</code>
+                </li>
+                <li>
+                    Only the <code>$</code> character
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-92')">Answer</button>
+            <div class="code-block" id="a-9" style="display: none;">
+                <p class="answer">
+                    <b>Explain:</b><br>
+                    This is a <b>negative lookbehind</b> - excludes numbers that come <b>after</b> <code>$</code>.
+                </p>
+            </div>
+        </li>
+        <li>
+            <h4>True or False: Lookaheads and Lookbehinds consume characters.?</h4>
+            <ol type="A" id="q-10">
+                <li>
+                    True
+                </li>
+                <li>
+                    False
+                </li>
+            </ol>
+            <button onclick="showAnswer('a-102')">Answer</button>
+            <div class="code-block" id="a-10" style="display: none;">
+                <p class="answer">
+                    <b>Explain:</b><br>
+                    These assertions <b>don't consume</b> characters; they just check positions.
+                </p>
+            </div>
+        </li>
+    </ol>
+    <h2>Final thought</h2>
+    <p>For day 3 on Regex, click <a href="post-regex-day4-learning-plan.html">Here</a>. </p>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+  <script>
+    function show(str){
+        document.getElementById(str).style.display = "block";
+    }
+    function showAnswer(str){
+        const n = str.charAt(str.length -1);
+        console.log(n);
+        let newStr = str.slice(0, -1);  
+        console.log(newStr);
+        document.getElementById(newStr).style.display = "block";
+        const parent = document.getElementById(newStr.replace('a', 'q'));
+        console.log(parent.innerHTML);
+        const nthChild = parent.children[n - 1];
+        console.log(nthChild.innerHTML);
+        nthChild.style.backgroundColor = "lightgreen";
+    }
+  </script>
+</body>
+</html>
