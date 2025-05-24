@@ -253,3 +253,6 @@ table {
 code{
 	background-color: #bebebe77;
 }
+.hidden {
+    display: none;
+}

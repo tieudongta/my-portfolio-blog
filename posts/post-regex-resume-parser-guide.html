@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RegEx learning">
+  <title>RegEx Boss Level Challenge - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>My Blog</h1>
+      <p class="tagline">Let's learn and grow together.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>Resume Data Parser: Step-by-step guide</h2>
+      <p class="date">Posted on May 22, 2025</p>
+
+      <p>Let's build the <b>Resume Parser App</b> step-by-step using HTML, CSS, and Vanilla JavaScript.</p>
+      <ol style="list-style-type: none;">
+        <li>
+            <section>
+                <h3>
+                    Project Overview
+                </h3>
+                <p>
+                    You'll build a form that takes in raw resume text and uses <b>regular expressions</b> to extract:
+                </p>
+                <ul>
+                    <li>Name</li>
+                    <li>Email</li>
+                    <li>Phone number</li>
+                    <li>Date of birth</li>
+                    <li>GitHub URL</li>
+                    <li>LinkedIn URL</li>
+                    <li>Skills</li>
+                </ul>
+                <p>Each step will build on the previous one. Let's go!</p>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Step 1: Create the Basic HTML Structure
+                </h3>
+                <h4>Tasks</h4>
+                <ol>
+                    <li>Create a html page name: index.html</li>
+                    <li>In body, create a textarea element cols = 50, rows = 10</li>
+                    <li>under, add a button Text = Parse Resume onclick = parseResume(), id = "resume-input"</li>
+                    <li>Under the button, add a pre element with id="output" to receive result output</li>
+                </ol>
+                <h4>Sample</h4>
+                <button onclick="show('step-1')">Show Sample</button>
+                <div class="code-block" id="step-1" style="display: none;">
+                    <p class="answer">
+                        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume Parser</title>
+</head>
+<body>
+  <h1>📄 Resume Parser</h1>
+
+  <textarea id="resumeInput" placeholder="Paste resume text here..." rows="10" cols="50"></textarea>
+  <br><br>
+  <button onclick="parseResume()">Parse Resume</button>
+
+  <h2>Extracted Info:</h2>
+  <pre id="output"></pre>
+
+  <script></script>
+</body>
+</html>
+
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Step 2: Add Basic Styling with CSS</h3>
+                <p>Now let's make our app look clean and readable.</p>
+                <h4>Update your <code>index.html</code> by adding this <code>&lt;style&gt;</code> section in the <code>&lt;head&gt;</code></h4>
+                <button onclick="show('step-2')">Show Sample</button>
+                <div class="code-block" id="step-2" style="display: none;">
+                    <p class="answer">
+    body {<br>
+    font-family: Arial, sans-serif;<br>
+    max-width: 800px;<br>
+    margin: auto;<br>
+    padding: 2rem;<br>
+    background: #f9f9f9;<br>
+  }<br>
+<br>
+  textarea {<br>
+    width: 100%;<br>
+    font-size: 1rem;<br>
+    padding: 1rem;<br>
+    box-sizing: border-box;<br>
+    border: 1px solid #ccc;<br>
+    border-radius: 4px;<br>
+  }<br>
+<br>
+  button {<br>
+    margin-top: 1rem;<br>
+    padding: 0.75rem 1.5rem;<br>
+    font-size: 1rem;<br>
+    background-color: #007bff;<br>
+    color: white;<br>
+    border: none;<br>
+    border-radius: 4px;<br>
+    cursor: pointer;<br>
+  }<br>
+<br>
+  button:hover {<br>
+    background-color: #0056b3;<br>
+  }<br>
+<br>
+  pre {<br>
+    background: #fff;<br>
+    border: 1px solid #ddd;<br>
+    padding: 1rem;<br>
+    border-radius: 4px;<br>
+    white-space: pre-wrap;<br>
+  }<br>
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>What You'll Reinforce</h3>
+                <ul>
+                    <li>Anchors <code>^, $</code></li>
+                    <li>
+                        Quantifiers <code>
+                            {n}, +, *
+                        </code>
+                    </li>
+                    <li>
+                        Character classes <code>\d, \w, \s, </code> classes
+
+
+                    </li>
+                    <li>
+                        Named groups <code>
+                            (?<name>...)
+                        </code>
+                    </li>
+                    <li>
+                        Groups <code>(...)</code>, alternation <code>|</code>
+                    </li>
+                    <li>
+                        Lookaheads/lookbehinds to filter junk
+                    </li>
+                    <li>
+                        Global and multiline flags (<code>gm</code>, <code>i</code>)
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Sample Skeleton</h3>
+                
+                <div class="code-block">
+                    <p>
+                        const resumeData = `...`; // your block of resumes<br>
+<br>
+// 1. Extract valid emails
+const emailPattern = /^Email:\s*(\w+(?:\.\w+)?@\w+\.\w{2,4})$/gm;<br>
+const emails = [...resumeData.matchAll(emailPattern)].map(m => m[1]);<br>
+<br>
+// 2. Valid phone numbers<br>
+const phonePattern = /^Phone:\s*(\d{3}-\d{4})$/gm;<br>
+const phones = [...resumeData.matchAll(phonePattern)].map(m => m[1]);<br>
+<br>
+// 3. Valid DOBs<br>
+const dobPattern = /^DOB:\s*((?:19|20)\d{2}-(?:0[1-9]|1[0-2])-(?:0[1-9]|[12]\d|3[01]))$/gm;<br>
+const dobs = [...resumeData.matchAll(dobPattern)].map(m => m[1]);<br>
+<br>
+// 4. Extract names<br>
+const namePattern = /^Name:\s*(.+)$/gm;<br>
+const names = [...resumeData.matchAll(namePattern)].map(m => m[1]);<br>
+<br>
+// 5. LinkedIn + GitHub<br>
+const linkPattern = /^(GitHub|LinkedIn):\s*(https:\/\/\S+)$/gm;<br>
+const links = [...resumeData.matchAll(linkPattern)].map(m => ({ platform: m[1], url: m[2] }));<br>
+<br>
+// 6. Extract skills<br>
+const skillsPattern = /^Skills:\s*(.+)$/gm;<br>
+const skills = [...resumeData.matchAll(skillsPattern)].map(m => m[1].split(/\s*,\s*/));<br>
+<br>
+// 7. Invalid emails<br>
+const invalidEmailPattern = /^Email:\s*(?!\w+@\w+\.\w{2,4}).+$/gm;<br>
+const invalidEmails = [...resumeData.matchAll(invalidEmailPattern)].map(m => m[0]);
+
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Output Example
+                </h3>
+                <div class="code-block">
+                    <p>
+                      {<br>
+  "Name": "Jane Doe",<br>
+  "Email": "jane.doe1990@gmail.com",<br>
+  "Phone": "123-4567",<br>
+  "DOB": "1990-08-15",<br>
+  "GitHub": "https://github.com/janedoe",<br>
+  "LinkedIn": "https://linkedin.com/in/janedoe",<br>
+  "Skills": ["JavaScript", "Python","HTML/CSS", "React", "Node.js"]<br>
+}
+  
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <h3>Bonus Challenges</h3>
+            <ul>
+                <li>
+                    Turn this into a resume scoring tool (e.g., count matching skills against a job description)
+                </li>
+                <li>
+                    Output data as JSON objects per candidate
+                </li>
+                <li>
+                    dd CLI support for parsing multiple .txt files
+                </li>
+                <li>
+                    Integrate into a simple web app
+                </li>
+            </ul>
+        </li>
+      </ol>
+
+    <h2>Final thought</h2>
+    <p>If you want a beep into the Demo app click <a href="../resume-parser.html">Here</a>. </p>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+  <script>
+    function escapeHtml(str) {
+        return str
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+    function show(str) {
+    const el = document.getElementById(str);
+    console.log(el.children);
+    if (el.style.display === "none" || el.style.display === "") {
+        el.style.display = "block";
+    } else {
+        el.style.display = "none";
+    }
+    
+}
+    function showAnswer(str) {
+    const index = str.slice(-1); // Get last character
+    const answerId = str.slice(0, -1); // Remove last character to get the element ID
+    const answerElement = document.getElementById(answerId);
+
+    if (!answerElement) return console.warn(`Element with ID '${answerId}' not found`);
+
+    answerElement.style.display = "block";
+
+    const questionId = answerId.replace('a', 'q');
+    const questionElement = document.getElementById(questionId);
+
+    if (!questionElement) return console.warn(`Element with ID '${questionId}' not found`);
+
+    const nthChild = questionElement.children[parseInt(index) - 1];
+
+    if (!nthChild) return console.warn(`Child #${index} not found in '${questionId}'`);
+
+    nthChild.style.backgroundColor = "lightgreen";
+}
+
+  </script>
+</body>
+</html>

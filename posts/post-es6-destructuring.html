@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RegEx learning">
+  <title>ES6 Destructuring - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>My Blog</h1>
+      <p class="tagline">Let's learn and grow together.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>ES6: Destructuring in JavaScript</h2>
+      <p class="date">Posted on May 23, 2025</p>
+
+      <p>Destructuring in JavaScript is a powerful feature introduced in ES6 (ECMAScript 2015) that allows you to <b>unpack values from arrays or properties from objects into distinct variables</b> in a concise and readable way.
+
+Let's break it down comprehensively:</p>
+      <ol>
+        <li>
+            <section>
+                <h3>
+                    Array Destructuring
+                </h3>
+                <p>
+                    Basic syntax:
+                </p>
+                <div class="code-block">
+                    <p>
+                        const numbers = [1,2,3];<br>
+                        const [a,b,c] = numbers;<br>
+                        console.log(a);// 1
+                    </p>
+                </div>
+                <p>Skipping elements:</p>
+                <div class="code-block">
+                    <p>
+                        const [first, , third] = [10,20,30];<br>
+                        console.log(third); // 30
+                    </p>
+                </div>
+                <p>Using rest operator</p>
+                <div class="code-block">
+                    <p>
+                        const [head, ...tail] = [1,2,3,4]; <br>
+                        console.log(tail); // [2,3,4]
+                    </p>
+                </div>
+                <p>Default values:</p>
+                <div class="code-block">
+                    <p>
+                        const [x=5, y=7] = [1];<br>
+                        console.log(x,y); // 1, 7
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Object Destructuring</h3>
+                <p>Basic syntax:</p>
+                <div class="code-block">
+                    <p>
+                        const person = { name: "Alice", age: 23}; <br>
+                        const {name, age} = person; <br>
+                        console.log(name); // "Alice"
+                    </p>
+                </div>
+                <p>
+                    Renaming variables:
+                </p>
+                <div class="code-block">
+                    <p>
+                        const { name: fullName, age: years } = person;<br>
+                        console.log(fullName); // "Alice" 
+                    </p>
+                </div>
+                <p>Default values:</p>
+                <div class="code-block">
+                    <p>
+                        const {nickname = "No nickname"} = person;<br>
+                        console.log(nickname);// "No nickname"
+                    </p>
+                </div>
+                <p>Nested objects:</p>
+                <div class="code-block">
+                    <p>
+                        const user = {<br>
+                            id: 1,<br>
+                            info:<br>
+                                username: "jdoe", <br>
+                                email: "jdoe@example.com"<br>
+                        }<br>
+                    };<br>
+                    const { info: { username, email}} = user; <br>
+                    console.log(username); // "jdoe" <br>
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <h3>
+                Function Parameters Destructuring
+            </h3>
+            <p>For Arrays:</p>
+            <div class="code-block">
+                <p>
+                    function sum([a,b]) {<br>
+                        return a + b;<br>
+                    }<br>
+                    console.log(sum([3,7])); // 10<br>
+                </p>
+            </div>
+            <p>For Objects:</p>
+            <div class="code-block">
+                <p>
+                    function greet({ name, age }) {<br>
+                        return `Hello, ${name}. You are ${age}.`;<br>
+                    }<br>
+                    console.log(greet({ name: "Alice", age: 30}));
+                </p>
+            </div>
+        </li>
+        <li>
+            <h3>
+                Destructuring with Loops
+            </h3>
+            <div class="code-block">
+                <p>
+                    const users = [<br>
+                    { id: 1, name: "Tom" },<br>
+                    { id: 2, name: "Jerry" },
+                    ];<br>
+                    for (const {id, name } of users) {<br>
+                        console.log(`${id}: ${name}`);<br>
+                    }<br>
+                </p>
+            </div>
+        </li>
+        <li>
+            <h3>Practical Use Cases</h3>
+            <ul>
+                <li>Extracting props in React components</li>
+                <li>
+                    Parsing JSON responses
+                </li>
+                <li>
+                    Returning multiple values from a function
+                </li>
+                <li>
+                    Handling function arguments with defaults
+                </li>
+            </ul>
+        </li>
+        <li>
+            <h3>
+                Destructuring Gotchas
+            </h3>
+            <p>Be careful with <code>undefined</code></p>
+            <div class="code-block">
+                <p>
+                    const [x] = [];<br>
+                    console.log(x); // undefined<br>
+                    const { y } = {};
+                    console.log(y); // undefined
+                </p>
+            </div>
+            <p>
+                Renaming + default:
+            </p>
+            <div class="code-block">
+                <p>
+                    const { name: fullName = "Guest" } = {}; <br>
+                    console.log(fullName); // "Guest"
+                </p>
+            </div>
+        </li>
+        <li>
+            <h3>
+                Destructuring + Spread & Rest
+            </h3>
+            <div class="code-block">
+                <p>
+                    const person = { name: "Alice", age: 30, city" "NY" };<br>
+                    const { name, ...rest } = person;<br>
+                    console.log(rest); // { age: 30, city: "NY" }
+                </p>
+            </div>
+        </li>
+        <li style="list-style-type: none; margin-top: 1rem;">
+            <section>
+                <h2>Summary</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Concept
+                            </th>
+                            <th>
+                                Syntax Example
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Array Destructuring
+                            </td>
+                            <td>
+                                <code>
+                                    const [a, b] = [1, 2];
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Object Destructuring
+                            </td>
+                            <td>
+                                <code>
+                                    const { name } = user;
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Default Values
+                            </td>
+                            <td>
+                                <code>
+                                    const [x = 10] = [];
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Rest Pattern
+                            </td>
+                            <td>
+                                <code>
+                                    const [head, ...tail] = list;
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nested Structures
+                            </td>
+                            <td>
+                                <code>
+                                    const { a: { b} } = obj;
+                                </code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Param Destructuring
+                            </td>
+                            <td>
+                                <code>
+                                    function({id, name}) {}
+                                </code>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </li>
+      </ol>
+      <h2 style="margin-top: 1rem;">Exercise Set:</h2>
+      <ol>
+        <li>
+            <section>
+                <h3>Array Destructing (Basic)</h3>
+                <p>Extract the first and second items from the array:</p>
+                <div class="code-block">
+                    <p>
+                        const colors = ['red', 'green', 'blue'];<br>
+                        // Your code here
+                    </p>
+                </div>
+                <p>Expected:</p>
+                <div class="code-block">
+                    <p>
+                        console.log(first); // 'red'<br>
+                        console.log(second); // 'green'
+                    </p>
+                </div>
+                <button onclick="show('task-1')">
+                    Answer
+                </button>
+                <div class="code-block hidden" id="task-1">
+                    <p class="answer">
+                        const [first, second] = colors;
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Skip Elements</h3>
+                <p>Extract only the first and third numbers</p>
+                <div class="code-block">
+                    <p>
+                        const numbers = [10, 20, 30];<br>
+                        // Your code here
+                    </p>
+                </div>
+                <p>
+                    Expected:
+                </p>
+                <div class="code-block">
+                    <p>
+                        console.log(a); // 10<br>
+                        console.log(b); // 30
+                    </p>
+                </div>
+                <button onclick="show('task-2')">
+                    Answer
+                </button>
+                <div class="code-block hidden" id="task-2">
+                    <p class="answer">
+                        const [a, , b] = numbers;
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Rest Operator
+                </h3>
+                <p>Use destructuring with the rest operator to get the head and the tail:</p>
+                <div class="code-block">
+                    <p>
+                        const fruits = ['apple', 'banana', 'mango', 'kiwi'];
+                        <br>//Your code here
+                    </p>
+                </div>
+                <p>Expected:</p>
+                <div class="code-block">
+                    <p>
+                        console.log(head); // 'apple'<br>
+                        console.log(tail); // ['banana', 'mango', 'kiwi']
+                    </p>
+                </div>
+                <button onclick="show('task-3')">Answer</button>
+                <div class="code-block hidden" id="task-3">
+                    <p class="answer">
+                        const [head, ...tail] = fruits;
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Object Destructuring (Basic)</h3>
+                <p>Extract the <code>name</code> and <code>age</code> from the object:</p>
+                <div class="code-block">
+                    <p>
+                        const person = { name: 'Sa,', age: 32, country: 'USA' };<br>
+                        // Your code here
+                    </p>
+                </div>
+                <button onclick="show('task-4')">Answer</button>
+                <div class="code-block hidden" id="task-4">
+                    <p class="answer">
+                        const {name, age} = person;
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Object with Renaming + Default
+                </h3>
+                <p>Rename <code>name</code> to <code>fullName</code> and set a default for <code>hobby</code></p>
+                <div class="code-block">
+                    <p>
+                        const user = { name: 'Lara', age: 22 };
+                        <br>// Your code here
+                    </p>
+                </div>
+                <p>Expected:</p>
+                <div class="code-block">
+                    <p>
+                        console.log(fullName); // 'Lara'<br>
+                        console.log(hobby); // 'none'
+                    </p>
+                </div>
+                <button onclick="show('task-5')">
+                    Answer
+                </button>
+                <div class="code-block hidden" id="task-5">
+                    <p class="answer">
+                        const { name:fullName, hobby = 'none'} = user; <br>
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Nested Object Destructing</h3>
+                <p>
+                    Extract <code>city</code> from the following:
+                </p>
+                <div class="code-block">
+                    <p>
+                        const profile = {<br>
+                            id: 1,<br>
+                            details:{<br>
+                                name: 'Max',<br>
+                                address: {<br>
+                                    city: 'Berlin',<br>
+                                    zip: 10115<br>
+                                }<br>
+                            }<br>
+                        };<br>
+                        // Your code here
+                    </p>
+                </div>
+                <button onclick="show('task-6')">Answer</button>
+                <div class="code-block hidden" id="task-6">
+                    <p class="answer">
+const { details: { address: { city } } } = profile;
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Destructuring Function Parameters</h3>
+                <p>Rewrite the function to use destructuring:</p>
+                <div class="code-block">
+                    <p>
+                        function greet(user) {<br>
+                            return `Hi ${user.name}, you are ${user.age} years old.`;<br>
+                        }
+                    </p>
+                </div>
+                <p>Rewrite using:</p>
+                <div class="code-block">
+                    <p>
+                        function greet({ name, age }) {<br>
+                            //...<br>
+                        }<br>
+                    </p>
+                </div>
+                <button onclick="show('task-7')">Answer</button>
+                <div class="code-block hidden" id="task-7">
+                    <p class="answer">
+                        function greet({ name, age }){<br>
+                            return `Hi ${name}, you are ${age} years old.`;<br>
+                        }
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Mixed: Array of Objects in Loop</h3>
+                <p>Print each user's name using destructuring in a loop</p>
+                <div class="code-block">
+                    <p>
+                        const users = [<br>
+                        { id: 1, name: 'A'},<br>
+                        { id: 2, name: 'B' }<br>
+                        ];<br>
+                        // Your code here
+                    </p>
+                </div>
+                <p>Expected:</p>
+                <div class="code-block">
+                    <p>
+                        User: A<br>User: B
+                    </p>
+                </div>
+                <button onclick="show('task-8')">Answer</button>
+                <div class="code-block hidden" id="task-8">
+                    <p class="answer">
+for (const { name } of users) {<br>
+    console.log(`User: ${name}` );<br>
+}
+                    </p>
+                </div>
+            </section>
+        </li>
+      </ol>
+    <h2>Final thought</h2>
+    <p>If you want to learn more about ECMAScript 2015 (ES6) click <a href="./ecmascript-2015-es6.html">Here</a>. </p>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+  <script>
+    function show(str){
+        document.getElementById(str).classList.toggle("hidden");
+    }
+    function showAnswer(str) {
+    const index = str.slice(-1); // Get last character
+    const answerId = str.slice(0, -1); // Remove last character to get the element ID
+    const answerElement = document.getElementById(answerId);
+
+    if (!answerElement) return console.warn(`Element with ID '${answerId}' not found`);
+
+    answerElement.style.display = "block";
+
+    const questionId = answerId.replace('a', 'q');
+    const questionElement = document.getElementById(questionId);
+
+    if (!questionElement) return console.warn(`Element with ID '${questionId}' not found`);
+
+    const nthChild = questionElement.children[parseInt(index) - 1];
+
+    if (!nthChild) return console.warn(`Child #${index} not found in '${questionId}'`);
+
+    nthChild.style.backgroundColor = "lightgreen";
+}
+
+  </script>
+</body>
+</html>

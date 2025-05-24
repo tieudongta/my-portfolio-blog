@@ -1,0 +1,21 @@
+Name: Jane Doe
+Email: jane.doe1990@gmail.com
+Phone: 123-4567
+Website: https://janedoe.dev
+LinkedIn: https://linkedin.com/in/janedoe
+GitHub: https://github.com/janedoe
+DOB: 1990-08-15
+Skills: JavaScript, Python, HTML/CSS, React, Node.js
+Experience:
+- Frontend Developer at Webify (2019–2022)
+- Intern at CodeBase (2018)
+
+Education:
+B.Sc. Computer Science, University of Example (2014–2018)
+
+Other Candidates:
+Name: Bob Smith
+Email: bob@domain
+Phone: 0000-000
+DOB: 1991-15-40
+Skills: Java, Spring, ?
