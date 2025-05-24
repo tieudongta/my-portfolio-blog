@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="RegEx learning">
+  <title>ES6 Set object - Nhiem Nguyen</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>My Blog</h1>
+      <p class="tagline">Let's learn and grow together.</p>
+      <nav>
+        <a href="../index.html">Home</a>
+        <a href="../projects.html">Projects</a>
+        <a href="../blog.html">Blog</a>
+        <a href="../contact.html">Contact</a>
+		<a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <article class="blog-post">
+      <h2>ES6: <code>Set</code> in JavaScript</h2>
+      <p class="date">Posted on May 24, 2025</p>
+
+      <p>
+        ECMAScript 2015, also known as ES6, introduced many new features to JavaScript, and one of them is the <code>Set</code> object. Here's a comprehensive overview:
+      </p>
+      <ol>
+        <li>
+            <section>
+                <h3>
+                    What is a <code>Set</code>?
+                </h3>
+                <p>
+                    A <code>Set</code> is a <b>collection of values</b> where <b>each value must be unique</b>. Unlike arrays, sets automatically remove duplicates.
+                </p>
+                <h4>Basic Syntax:</h4>
+                <div class="code-block">
+                    <p>
+                        const mySet = new Set();
+                    </p>
+                </div>
+                <p>You can also initialize it with an iterable (like an array):</p>
+                <div class="code-block">
+                    <p>
+                        const mySet = new Set([1, 2, 3, 3]);<br>
+                        console.log(mySet); // Set(3) { 1, 2, 3 }
+                    </p>
+                </div>
+                
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Key Characteristics</h3>
+                <ul>
+                    <li>
+                        <b>No duplicate values</b> - All elements in a Set are unique.
+                    </li>
+                    <li>
+                        <b>Order</b> - Insertion order is maintained.
+                    </li>
+                    <li>
+                        <b>Any value type</b> - Can include any type of value: primitive or object.
+                    </li>
+                </ul>
+            </section>
+        </li>
+        <li>
+            <h3>
+                Methods
+            </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Method
+                        </th>
+                        <th>
+                            Description
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <code>
+                                add(value)
+                            </code>
+                        </td>
+                        <td>
+                            Adds a new element. Returns the Set object.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>
+                                delete(value)
+                            </code>
+                        </td>
+                        <td>
+                            Removes the value from the Set. Returns <code>true</code> if the value existed
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>
+                                has(value)
+                            </code>
+                        </td>
+                        <td>
+                            Checks if the value exists in the Set.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>
+                                clear()
+                            </code>
+                        </td>
+                        <td>
+                            Removes all elements.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <code>
+                                size
+                            </code>
+                        </td>
+                        <td>
+                            Property that returns the number of values in the Set.
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h4>Example:</h4>
+            <div class="code-block">
+                <p>
+                    const set = new Set();<br>
+                    set.add(1); <br>
+                    set.add(5);<br>
+                    set.add(1);// ignored, duplicate<br>
+                    console.log(set.has(1)); // true <br>
+                    console.log(set.size); // 2 <br>
+                    set.delete(5);<br>
+                    console.log(set); // Set(1) { 1 }
+                </p>
+            </div>
+        </li>
+        <li>
+            <h3>
+                Iterating Over Sets
+            </h3>
+            <p>A Set is iterable. You can use:</p>
+            <h4><code>forEach()</code></h4>
+            <div class="code-block">
+                <p>
+                    set.forEach(value => console.log(value));
+                </p>
+            </div>
+            <h4><code>for...of</code> loop:</h4>
+            <div class="code-block">
+                <p>
+                    for (let item of set) {<br>
+console.log(item);<br>
+                    }
+                </p>
+            </div>
+        </li>
+        <li>
+            <h3>Set Operations (manually)</h3>
+            <p>JavaScript's <code>Set</code> doesn't have built-in methods for union, intersection, etc, but you can implement them easily:</p>
+            <h4>Union:</h4>
+            <div class="code-block">
+                <p>
+                    const a = new Set([1, 2, 3]);<br>
+                    const b = new Set([3, 4, 5]);<br>
+                    const union = new Set([...a, ...b]); // Set {1, 2, 3, 4, 5}
+                </p>
+            </div>
+            <h4>Intersection:</h4>
+            <div class="code-block">
+                <p>
+                    const intersection = new Set([...a].filter(x => b.has(x))); // Set {3}
+                </p>
+            </div>
+            <h4>Difference:</h4>
+            <div class="code-block">
+                <p>
+                    const difference = new Set([...a].filter(x => !b.has(x))); // Set {1, 2}
+                </p>
+            </div>
+        </li>
+        <li>
+            <h3>
+                Comparing to Arrays
+            </h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>
+                            Feature
+                        </th>
+                        <th>
+                            Set
+                        </th>
+                        <th>
+                            Array
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            Unique values
+                        </td>
+                        <td>
+                            Enforced
+                        </td>
+                        <td>
+                            Manual
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Iteration
+                        </td>
+                        <td>
+                            Yes
+                        </td>
+                        <td>
+                            Yes
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Access by index
+                        </td>
+                        <td>
+                            No
+                        </td>
+                        <td>
+                            Yes
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Size property
+                        </td>
+                        <td>
+                            <code>.size</code>
+                        </td>
+                        <td>
+                            <code>.length</code>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </li>
+        <li>
+            <h3>
+                Use Cases
+            </h3>
+            <ul>
+                <li>
+                    <p>Removing duplicates from an array:</p>
+                    <div class="code-block">
+                <p>
+                    const nums = [1, 2, 2, 3, 4];<br>
+                    const unique = [...new Set(nums)];<br>
+                    // [1, 2, 3, 4]
+                </p>
+            </div>
+                </li>
+                <li>
+                    <p>Membership testing (like using a hash set in other languages).</p>
+                </li>
+                <li>
+                    <p>
+                        Efficiently tracking a collection of unique items.
+                    </p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <section>
+                <h3>WeakSet vs Set (Bonus)</h3>
+                <p><code>WeakSet</code> is similar but:</p>
+                <ul>
+                    <li>Only stores <b>objects</b> (not primitives)</li>
+                    <li>Is <b>not iterable.</b></li>
+                    <li>Doesn't support <code>.size</code>, <code>forEach()</code>, or spreading.</li>
+                    <li>Holds <b>weak references</b>, allowing garbage collection.
+                    <div class="code-block">
+                        <p>
+                            const ws = new weakSet();<br>
+                            ws.add({ name: "A" }); // OK<br>
+                            ws.add(123); // TypeError
+                        </p>
+                    </div>
+                    </li>
+                </ul>
+            </section>
+        </li>
+      </ol>
+      <h2 style="margin-top: 1.5rem;">Set Use Cases:</h2>
+      <p>Practical use cases for ES6 <code>Set</code> objects in real-world JavaScript development:</p>
+      <ol>
+        <li>
+            <section>
+                <h3>
+                    Removing Duplicates from an Array
+                </h3>
+                <p>
+                    This is probably the most common use case.
+                </p>
+                <div class="code-block">
+                    <p>
+                        const nums = [1, 2, 2, 3, 4, 4];<br>
+                        const uniqueNums = [...new Set(nums)];<br>
+                        console.log(uniqueNums); // [1, 2, 3, 4]
+                    </p>
+                </div>
+                
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Checking for Unique Values in Input</h3>
+                <p>
+                    For example, validating a form where usernames must be unique:
+                </p>
+                <div class="code-block">
+                    <p>
+                        const usernames = ['alice', 'bob', 'alice'];<br>
+                        const uniqueUsernames = new Set(usernames);<br>
+                        <br>
+                        if (usernames.length !== uniqueUsernames.size){<br>
+                            console.log('Duplicate usernames found!');<br>
+                        }
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Efficient Membership Testing</h3>
+                <p>Use <code>Set.has()</code> instead of <code>Array.includes()</code> for large datasets:</p>
+                <div class="code-block">
+                    <p>
+                        const blacklist = new Set(['spam@example.com', 'bot@example.com']);<br>
+                        <br>
+                        function isBlacklisted(email){<br>
+                            return blacklist.has(email);
+                        }
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Tracking Unique Visitors or Events
+                </h3>
+                <div class="code-block">
+                    <p>
+                        const uniqueUsers = new Set(); <br>
+                        <br>
+                        function recordVisit(userId) {<br>
+                            uniqueUsers.add(userId);<br>
+                        }
+                        <br>
+                        recordVisit('user1');<br>
+                        recordVisit('user2');<br>
+                        recordVisit('user1');<br>
+                        <br>
+                        console.log(uniqueUsers.size); // 2
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Set-Based Operations (Union, Intersection, Difference)
+                </h3>
+                <p>
+                    Intersection Example: Users subscribed to both newsletters
+                </p>
+                <div class="code-block">
+                    <p>
+                        const newsletterA = new Set(['alice', 'bob', 'carol']);<br>
+                        const newsletterB = new Set(['dave', 'bob', 'carol']);<br>
+                        <br>
+                        const both = new Set([...newsletterA].filter(user => newsletterB.has(user)));<br>
+                        console.log(both); // Set { 'bob', 'carol' }
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Filter Unique Objects by Property
+                </h3>
+                <p>
+                    To track unique entries in an array of objects:
+                </p>
+                <div class="code-block">
+                    <p>
+                        const posts = [<br>
+                            { id: 1, title: 'Hello' }, <br>
+                            { id: 2, title: 'World' }, <br>
+                            { id: 1, title: 'Hello Again' }<br>
+                        ];<br>
+                        const seen = new Set();<br>
+                        const uniquePosts = posts.filter(post => {<br>
+                            if (seen.has(post.id)) return false;<br>
+                            seen.add(post.id);<br>
+                            return true;<br>
+                        });<br>
+                        console.log(uniquePosts);<br>
+                        // [{ id: 1, title: 'Hello' }, {id: 2, title: 'World' }]
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Building a Tag System (e.g., Blog Tags)</h3>
+                <div class="code-block">
+                    <p>
+                        const allTags = new Set();<br>
+                        <br>
+                        function addPostTags(tags) {<br>
+                            tags.forEach(tag => allTags.add(tag));<br>
+                        }<br>
+                        <br>
+                        addPostTags(['js', 'web']);<br>
+                        addPostTags(['node', 'js']);<br>
+                        console.log([...allTags]); // ['js', 'web', 'node']
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Caching Results to Avoid Duplicate Processing
+                </h3>
+                <div class="code-block">
+                    <p>
+                        const cache = new Set();<br>
+                        <br>
+                        function processData(id) {<br>
+                            if (cache.has(id)) {<br>
+                                console.log("Skipping duplicate..."); <br>
+                                return; <br>
+                            }<br>
+                            cache.add(id);
+                            // expensive operation here<br>
+                            console.log(`Processing ${id}`);<br>
+                        }<br>
+                        processData('abc');<br>
+                        processData('xyz');<br>
+                        processData('abc'); // will be skipped
+                    </p>
+                </div>
+            </section>
+        </li>
+        </ol>
+    <h2 style="margin-top: 1.5rem;">
+        Exercises
+    </h2>
+    <p>Here's a progressive set of exercises to help solidify your understanding of ES6 <code>Set</code> in JavaScript, from basic to advanced.</p>
+    <ol>
+        <h3>Beginner Exercises</h3>
+        <li>
+            <section>
+                <h3>Create a Set</h3>
+                <p>
+                    <b>Task:</b> Create a <code>Set</code> called <code>colors</code> and add <code>'red'</code>, <code>'green'</code>, <code>'blue'</code>, and <code>'red'</code>
+                </p>
+                <p>Expected Output:</p>
+                <div class="code-block">
+                    <p>
+                        Set {'red', 'green', 'blue' }
+                    </p>
+                </div>
+                <button onclick="show('task-1')">
+                    Answer
+                </button>
+                <div class="code-block hidden" id="task-1">
+                    <p class="answer">
+                        const colors = new Set();<br>
+                        colors.add('red');<br>
+                        colors.add('green');<br>
+                        colors.add('blue');<br>
+                        colors.add('red');<br>
+                        console.log(colors);// Set {'red', 'green', 'blue' }
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Check Membership
+                </h3>
+                <p><b>Task:</b> Check if the value 'green' exists in the <code>colors</code> Set.</p>
+                <p>Expected Output:</p>
+                <div class="code-block">
+                    <p>
+                        true
+                    </p>
+                </div>
+                <button onclick="show('task-3')">Answer</button>
+                <div class="code-block hidden" id="task-3">
+                    <p class="answer">
+                        console.log(colors.has('green'));
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Set Size</h3>
+                <p><b>Task:</b> Print the size of the <code>colors</code> Set.</p>
+                <p>Expected Output:</p>
+                <div class="code-block">
+                    <p>
+                        3
+                    </p>
+                </div>
+                <button onclick="show('task-4')">Answer</button>
+                <div class="code-block hidden" id="task-4">
+                    <p class="answer">
+                        console.log(colors.size);
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Remove a Value
+                </h3>
+                <p>
+                    <b>Task:</b> Remove <code>'green'</code> from the Set and print the result.
+                </p>
+                <p>Expected Output:</p>
+                <div class="code-block">
+                    <p>
+                        Set {'red', 'blue'}
+                    </p>
+                </div>
+                <button onclick="show('task-5')">
+                    Answer
+                </button>
+                <div class="code-block hidden" id="task-5">
+                    <p class="answer">
+                        colors.delete('green');
+                        console.log(colors); // Set { 'red', 'blue'}
+                    </p>
+                </div>
+            </section>
+        </li>
+        <h3> Intermediate Exercises</h3>
+        <li>
+            <section>
+                <h3>Remove Duplicates from an Array</h3>
+                <p>
+                    <b>Task:</b> Write a function <code>removeDuplicates(arr)</code> takes an array and returns a new array with unique elements.
+                </p>
+                <div class="code-block">
+                    <p>
+                        removeDuplicates([1, 2, 2, 3, 4, 4]);<br>
+                        // Output: [1, 2, 3, 4]
+                    </p>
+                </div>
+                <button onclick="show('task-6')">Answer</button>
+                <div class="code-block hidden" id="task-6">
+                    <p class="answer">
+                        function removeDuplicates(arr) {<br>
+                            return [...new Set(arr)];<br>
+                        }
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Convert Set to Array</h3>
+                <p>
+                    <b>Task:</b> Convert a Set of numbers into an array and sort it.
+                </p>
+                <div class="code-block">
+                    <p>
+                        const nums = new Set([3, 1, 2]);
+                    </p>
+                </div>
+                <p>Expected Output:</p>
+                <div class="code-block">
+                    <p>
+                        [1, 2, 3]
+                    </p>
+                </div>
+                <button onclick="show('task-7')">Answer</button>
+                <div class="code-block hidden" id="task-7">
+                    <p class="answer">
+                        const sortedArray = [...nums].sort((a, b) => a - b);<br>
+                        console.log(sortedArray); // [1, 2, 3]
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Unique Characters in String</h3>
+                <p>
+                    <b>Task:</b> Write a function <code>hasUniqueChars(str)</code> that returns <code>true</code> if all characters in the string are unique.
+                </p>
+                <div class="code-block">
+                    <p>
+                        hasUniqueChars("hello"); // false<br>
+                        hasUniqueChars("world"); // true <br>
+                    </p>
+                </div>
+                <button onclick="show('task-8')">Answer</button>
+                <div class="code-block hidden" id="task-8">
+                    <p class="answer">
+                        function hasUniqueChars(str) {<br>
+                            return new Set(str).size === str.length;<br>
+                        }<br>
+                        <br>
+                        console.log(hasUniqueChars("hello")); // false <br>
+                        console.log(hasUniqueChars("world")); // true 
+                    </p>
+                </div>
+            </section>
+        </li>
+        <h3>Advanced Exercises</h3>
+        <li>
+            <section>
+                <h3>
+                    Intersection of Two Sets
+                </h3>
+                <p>
+                    <b>Task:</b> Write a function <code>intersection(setA, setB)</code> that returns a new Set of values found in both
+                </p>
+                <div class="code-block">
+                    <p>
+                        intersection(new Set([1,2,3]), new Set([2,3,4]));<br>
+                        {2, 3}
+                    </p>
+                </div>
+                <button onclick="show('task-9')">Answer</button>
+                <div class="code-block hidden" id="task-9">
+                    <p class="answer">
+                        function intersection(setA, setB) {<br>
+                            return new Set([...setA].filter(x => setB.has(x)));<br>
+                        }<br>
+                        <br>
+                        console.log(intersection(new Set([1,2,3]), new Set(2,3,4))); // Set {2, 3}
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>
+                    Difference Between Two Sets
+                </h3>
+                <p>
+                    <b>
+                        Task:
+                    </b> Write a function <code>difference(setA, setB)</code> that returns a Set with values only in <code>setA</code>
+                </p>
+                <div class="code-block">
+                    <p>
+                        difference(new Set([1,2,3]), new Set([2,3,4]));<br>
+                        // Set {1}
+                    </p>
+                </div>
+                <button onclick="show('task-10')">Answer</button>
+                <div class="code-block hidden" id="task-10">
+                    <p class="answer">
+                        function difference(setA, setB) {<br>
+                            return new Set([...setA].filter(x => !setB.has(x)));<br>
+                        }<br>
+                        <br>
+                        console.log(difference(new Set([1,2,3]), new Set([2,3,4]))); <br>// Set {1} 
+                    </p>
+                </div>
+            </section>
+        </li>
+        <li>
+            <section>
+                <h3>Count Unique Words</h3>
+                <p><b>Task:</b> Write a function <code>countUniqueWords(text)</code> that takes a string and counts the number of unique words (case-insensitive).</p>
+                <div class="code-block">
+                    <p>
+                        countUniqueWords("The quick brown fox jumps over the lazy dog");<br>
+                        // Output: 8
+                    </p>
+                </div>
+                <button onclick="show('task-11')">Answer</button>
+                <div class="code-block hidden" id="task-11">
+                    <p class="answer">
+                        function countUniqueWords(text) {<br>
+                            const words = text.toLowerCase().match(/\b\w+\b/g);<br>
+                            return new Set(words).size;<br>
+                        } <br>
+                        console.log(countUniqueWords("The quick brown fox jumps over the lazy dog"));
+                    </p>
+                </div>
+            </section>
+        </li>
+        <h3>Bonus Challenge</h3>
+        <li>
+            <section>
+                <h3>
+                    Track Unique Visitors
+                </h3>
+                <p>Simulate a website visit tracker using a <code>Set</code></p>
+                <div class="code-block">
+                    <p>
+                        const tracker = new Set();<br>
+                        <br>
+                        function visit(userId) {<br>
+                            // your code here<br>
+                        }<br>
+                        visit("user1");<br>
+                        visit("user2");<br>
+                        visit("user1");<br>
+                        console.log(tracker.size); // 2
+                    </p>
+                </div>
+                <button onclick="show('task-12')">Answer</button>
+                <div class="code-block hidden" id="task-12">
+                    <p class="answer">
+                        const tracker = new Set();<br>
+                    function visit(userId){<br>
+                        tracker.add(userId);<br>
+                    }<br>
+                    visit("user1");<br>
+                    visit("user2");<br>
+                    visit("user1");<br>
+                    console.log(tracker.size); // 2
+                </p>
+                </div>
+            </section>
+        </li>
+      </ol>
+    <h2>Final thought</h2>
+    <p>If you want to learn more about ECMAScript 2015 (ES6) click <a href="./ecmascript-2015-es6.html">Here</a>. </p>
+	<p>Start small and build your way up!</p>
+      <p>Thanks for reading. Good luck, and enjoy the journey!</p>
+
+      <a href="../blog.html" class="button">← Back to Blog</a>
+    </article>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Tri Nhiem Nguyen. All rights reserved.</p>
+  </footer>
+  <script>
+    function show(str){
+        document.getElementById(str).classList.toggle("hidden");
+    }
+    function showAnswer(str) {
+    const index = str.slice(-1); // Get last character
+    const answerId = str.slice(0, -1); // Remove last character to get the element ID
+    const answerElement = document.getElementById(answerId);
+
+    if (!answerElement) return console.warn(`Element with ID '${answerId}' not found`);
+
+    answerElement.style.display = "block";
+
+    const questionId = answerId.replace('a', 'q');
+    const questionElement = document.getElementById(questionId);
+
+    if (!questionElement) return console.warn(`Element with ID '${questionId}' not found`);
+
+    const nthChild = questionElement.children[parseInt(index) - 1];
+
+    if (!nthChild) return console.warn(`Child #${index} not found in '${questionId}'`);
+
+    nthChild.style.backgroundColor = "lightgreen";
+}
+
+  </script>
+</body>
+</html>
